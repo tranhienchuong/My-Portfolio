@@ -31,4 +31,4 @@ Clone the repo:
 git clone https://github.com/tranhienchuong/My-Portfolio
 cd My-Portfolio
 
-demo 
+demo https://tranhienchuong.github.io/My-Portfolio/?
