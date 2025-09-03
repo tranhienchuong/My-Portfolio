@@ -30,3 +30,5 @@ Clone the repo:
 ```bash
 git clone https://github.com/tranhienchuong/My-Portfolio
 cd My-Portfolio
+
+demo 
