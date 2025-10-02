@@ -4,7 +4,7 @@ Welcome to my personal portfolio website — a showcase of my skills, projects, 
 
 ## 🌐 Live Demo
 
-[Visit the site](https://github.com/tranhienchuong/My-Portfolio) 
+[Visit the site](https://tranhienchuong.github.io/My-Portfolio/) 
 
 ## 📁 Features
 
