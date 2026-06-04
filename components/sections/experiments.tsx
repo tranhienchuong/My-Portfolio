@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { Container } from "@/components/ui/container";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -69,7 +70,7 @@ export function Experiments() {
             {experiments.map((experiment) => (
               <GlassCard className="p-6" data-experiment-card interactive key={experiment.title}>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neon-pink">
-                  {experiment.label}
+                  <FlickerText>{experiment.label}</FlickerText>
                 </p>
                 <h3 className="mt-3 text-xl font-semibold text-foreground">
                   {experiment.title}

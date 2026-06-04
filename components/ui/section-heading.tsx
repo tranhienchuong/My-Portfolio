@@ -1,4 +1,5 @@
 import { GradientText } from "@/components/ui/gradient-text";
+import { FlickerText } from "@/components/effects/FlickerText";
 
 type SectionHeadingProps = {
   eyebrow: string;
@@ -10,7 +11,7 @@ export function SectionHeading({ eyebrow, title, description }: SectionHeadingPr
   return (
     <div className="max-w-2xl">
       <p className="text-sm font-semibold uppercase tracking-[0.22em] text-neon-cyan">
-        {eyebrow}
+        <FlickerText>{eyebrow}</FlickerText>
       </p>
       <h2 className="mt-3 text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
         <GradientText>{title}</GradientText>

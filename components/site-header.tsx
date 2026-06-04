@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { profile } from "@/lib/portfolio";
 
 const navItems = [
@@ -19,7 +20,7 @@ export function SiteHeader() {
           className="text-sm font-semibold text-foreground drop-shadow-[0_0_18px_hsl(var(--neon-cyan)/0.35)] focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
           href="/"
         >
-          {profile.name}
+          <FlickerText>{profile.name}</FlickerText>
         </Link>
         <nav
           aria-label="Main navigation"

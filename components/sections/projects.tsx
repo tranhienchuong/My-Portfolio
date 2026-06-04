@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { Container } from "@/components/ui/container";
 import { FadeUp } from "@/components/motion/fade-up";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -129,7 +130,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               ))}
             </div>
             <p className="mt-5 text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
-              {project.category}
+              <FlickerText>{project.category}</FlickerText>
             </p>
             <h3
               className={cn(
@@ -164,14 +165,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   aria-label={`View details for ${project.title}`}
-                  className="inline-flex rounded-md border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
+                  className="inline-flex rounded-none border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
                   href={`/projects/${project.slug}`}
                 >
                   View details
                 </Link>
                 <a
                   aria-label={`View ${project.title} on GitHub`}
-                  className="inline-flex rounded-md border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
+                  className="inline-flex rounded-none border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
                   href={project.href}
                   rel="noreferrer"
                   target="_blank"
@@ -183,7 +184,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {!hasExternalLink ? (
               <Link
                 aria-label={`View details for ${project.title}`}
-                className="mt-6 inline-flex rounded-md border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
+                className="mt-6 inline-flex rounded-none border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
                 href={`/projects/${project.slug}`}
               >
                 View details

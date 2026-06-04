@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/container";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { FadeUp } from "@/components/motion/fade-up";
 import { GlassCard } from "@/components/ui/glass-card";
 import { GlowButton } from "@/components/ui/glow-button";
@@ -15,7 +16,7 @@ export function Contact() {
           <GlassCard className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-neon-cyan">
-                Contact
+                <FlickerText>Contact</FlickerText>
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">
                 <GradientText>Let&apos;s create something visually memorable.</GradientText>

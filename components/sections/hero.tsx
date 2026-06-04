@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import profileImage from "@/image/profile.png";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { Container } from "@/components/ui/container";
 import { GlassCard } from "@/components/ui/glass-card";
 import { GlowButton } from "@/components/ui/glow-button";
@@ -25,13 +26,13 @@ export function Hero() {
             className="text-sm font-semibold uppercase tracking-[0.24em] text-neon-cyan"
             variants={heroReveal}
           >
-            {profile.role}
+            <FlickerText>{profile.role}</FlickerText>
           </motion.p>
           <motion.h1
             className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-foreground sm:text-6xl"
             variants={heroReveal}
           >
-            <GradientText>{profile.name}</GradientText>
+            <GradientText className="hero-gradient-name">{profile.name}</GradientText>
           </motion.h1>
           <motion.p
             className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground"

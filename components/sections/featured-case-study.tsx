@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/container";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { FadeUp } from "@/components/motion/fade-up";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -17,7 +18,7 @@ function DocumentGraphVisual() {
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-neon-cyan">
-                  {label}
+                  <FlickerText>{label}</FlickerText>
                 </span>
                 <span className="rounded border border-neon-purple/25 bg-neon-purple/10 px-2 py-1 text-[10px] text-neon-purple">
                   C-{index + 1}
@@ -94,7 +95,7 @@ export function FeaturedCaseStudy() {
                 {[featuredCaseStudy.problem, featuredCaseStudy.solution].map((item) => (
                   <div key={item.title}>
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
-                      {item.title}
+                      <FlickerText>{item.title}</FlickerText>
                     </p>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.text}</p>
                   </div>
@@ -112,7 +113,7 @@ export function FeaturedCaseStudy() {
           <FadeUp>
             <GlassCard className="p-6 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
-                Architecture
+                <FlickerText>Architecture</FlickerText>
               </p>
               <div className="mt-5">
                 <ArchitectureFlow />
@@ -123,7 +124,7 @@ export function FeaturedCaseStudy() {
           <FadeUp>
             <GlassCard className="p-6 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
-                Key features
+                <FlickerText>Key features</FlickerText>
               </p>
               <div className="mt-5 grid gap-2">
                 {featuredCaseStudy.features.map((feature) => (
@@ -144,7 +145,7 @@ export function FeaturedCaseStudy() {
             <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-start">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
-                  Tech stack
+                  <FlickerText>Tech stack</FlickerText>
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {featuredCaseStudy.techStack.map((tag) => (

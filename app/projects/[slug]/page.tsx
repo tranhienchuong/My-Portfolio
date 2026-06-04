@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { FlickerText } from "@/components/effects/FlickerText";
 import { Container } from "@/components/ui/container";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getProjectBySlug, getProjectSlugs, type Project } from "@/lib/portfolio";
@@ -21,7 +22,7 @@ function DetailVisual({ type }: { type: Project["visualType"] }) {
             {["Retrieved context", "Graph relation", "Citation check"].map((label) => (
               <div className="rounded-md border border-white/10 bg-white/[0.055] p-4" key={label}>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neon-cyan">
-                  {label}
+                  <FlickerText>{label}</FlickerText>
                 </p>
                 <div className="mt-4 space-y-2">
                   <div className="h-2 rounded-full bg-white/25" />
@@ -146,7 +147,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </div>
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
-              {project.category}
+              <FlickerText>{project.category}</FlickerText>
             </p>
             <h1 className="mt-4 max-w-4xl break-words text-3xl font-semibold leading-tight text-foreground sm:text-5xl">
               {project.title}
@@ -157,7 +158,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {hasExternalLink ? (
               <a
                 aria-label={`View ${project.title} on GitHub`}
-                className="mt-7 inline-flex rounded-md border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
+                className="mt-7 inline-flex rounded-none border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
                 href={project.href}
                 rel="noreferrer"
                 target="_blank"
