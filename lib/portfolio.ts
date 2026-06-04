@@ -123,6 +123,49 @@ export const projects: Project[] = [
   },
 ];
 
+export const featuredCaseStudy = {
+  eyebrow: "Featured Case Study",
+  title: "Building a citation-aware Vietnamese labor-law AI assistant.",
+  description:
+    "A closer look at how the project combines retrieval, legal-document structure, graph expansion, and citation validation to produce grounded legal-information responses.",
+  problem: {
+    title: "The problem",
+    text: "Vietnamese labor-law information is often fragmented across official documents, decrees, circulars, and legal interpretations. A user may ask a natural-language question, but the answer should still be grounded in relevant legal context instead of unsupported generation.",
+  },
+  solution: {
+    title: "The solution",
+    text: "The assistant uses a scoped legal corpus and retrieval-augmented generation flow. It retrieves relevant legal context, expands related legal concepts through a knowledge graph, and validates citations before producing a final response.",
+  },
+  architecture: [
+    "User question",
+    "Hybrid retrieval",
+    "Legal graph expansion",
+    "Grounded generation",
+    "Citation validation",
+    "Final answer",
+  ],
+  features: [
+    "Scoped Vietnamese labor-law corpus",
+    "Hybrid dense/sparse retrieval",
+    "Legal knowledge graph expansion",
+    "Grounded answer generation",
+    "Deterministic citation validation",
+    "Evaluation and reproducibility pipeline",
+  ],
+  techStack: [
+    "Python",
+    "FastAPI",
+    "Next.js",
+    "TypeScript",
+    "Qdrant",
+    "Neo4j",
+    "RAG",
+    "GraphRAG",
+    "LLM",
+  ],
+  note: "This project is designed as a legal-information assistant and research project. It is not a replacement for professional legal advice.",
+};
+
 export const experiments = [
   {
     title: "Neon Command Palette",
