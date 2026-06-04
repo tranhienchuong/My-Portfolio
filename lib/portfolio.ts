@@ -19,6 +19,7 @@ export const stats = [
 ];
 
 export type Project = {
+  slug: string;
   title: string;
   type: string;
   category: string;
@@ -30,10 +31,15 @@ export type Project = {
   href?: string;
   featured?: boolean;
   visualType?: "legal-ai" | "mobile" | "portfolio" | "dashboard";
+  problem?: string;
+  solution?: string;
+  outcome?: string;
+  note?: string;
 };
 
 export const projects: Project[] = [
   {
+    slug: "vietnamese-labor-law-ai-assistant",
     title: "Vietnamese Labor Law AI Assistant",
     type: "Featured Project",
     category: "AI / LegalTech / Thesis Project",
@@ -64,8 +70,16 @@ export const projects: Project[] = [
     href: "https://github.com/tranhienchuong/vietnamese-labor-law-ai-assistant",
     featured: true,
     visualType: "legal-ai",
+    problem:
+      "Vietnamese labor-law information is fragmented across official documents and related legal structures. A natural-language question needs an answer grounded in retrieved legal context, not unsupported model generation.",
+    solution:
+      "The project uses a scoped legal corpus, hybrid retrieval, legal graph expansion, grounded answer generation, and deterministic citation validation to produce legal-information responses.",
+    outcome:
+      "The project demonstrates how retrieval, graph context, and citation checks can make an AI assistant more grounded, transparent, and suitable for legal-information research.",
+    note: "This project is a legal-information assistant and research project. It is not a replacement for professional legal advice.",
   },
   {
+    slug: "gia-pha-viet",
     title: "Gia Phả Việt",
     type: "Mobile Prototype",
     category: "Android / AI Studio / Personal Project",
@@ -84,14 +98,24 @@ export const projects: Project[] = [
     href: "https://github.com/tranhienchuong/gia-pha-viet",
     featured: true,
     visualType: "mobile",
+    problem:
+      "Family-history ideas can be difficult to turn into a clear mobile product structure without prototyping the interaction model first.",
+    solution:
+      "The project explores an Android/Kotlin mobile prototype generated from an AI Studio workflow and prepared for Gemini API configuration.",
+    outcome:
+      "The project demonstrates early mobile product exploration, Android project structure, and AI-assisted prototyping.",
+    note: "This is an early-stage prototype and learning project, not a finished production app.",
   },
   {
+    slug: "creative-portfolio-system",
     title: "Creative Portfolio System",
     type: "Personal Project",
     category: "Frontend / Motion Design",
     status: "In Progress",
     description:
       "A visual-first portfolio system built to explore color, motion, glassmorphism, responsive layout, and interactive UI.",
+    longDescription:
+      "A visual-first portfolio system built to explore color, motion, glassmorphism, responsive layout, and interactive UI while keeping content editable and components reusable.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Motion", "GSAP"],
     highlights: [
       "Dark neon visual system",
@@ -102,14 +126,24 @@ export const projects: Project[] = [
     href: "#",
     featured: false,
     visualType: "portfolio",
+    problem:
+      "A beginner portfolio can feel empty if it only lists projects without strong visual identity or interaction polish.",
+    solution:
+      "This portfolio uses dark neon visuals, glassmorphism, motion, responsive layout, and reusable components to turn the portfolio itself into a polished project.",
+    outcome:
+      "The project demonstrates frontend UI composition, component structure, responsive design, and motion-focused presentation.",
+    note: "This is a personal portfolio system and visual experiment.",
   },
   {
+    slug: "neon-analytics-dashboard",
     title: "Neon Analytics Dashboard",
     type: "UI Concept",
     category: "Dashboard / Interface Design",
     status: "Concept",
     description:
       "A glowing dashboard concept focused on responsive cards, animated numbers, glass panels, and dark interface polish.",
+    longDescription:
+      "A glowing dashboard concept focused on responsive cards, animated numbers, glass panels, and dark interface polish for a structured, scannable interface study.",
     tags: ["Next.js", "Tailwind CSS", "Motion"],
     highlights: [
       "Glassmorphism dashboard cards",
@@ -120,8 +154,23 @@ export const projects: Project[] = [
     href: "#",
     featured: false,
     visualType: "dashboard",
+    problem:
+      "Dashboard interfaces need to make dense information feel scannable, structured, and visually engaging.",
+    solution:
+      "The concept explores glowing cards, dark UI hierarchy, animated data blocks, and responsive dashboard layout patterns.",
+    outcome:
+      "The project demonstrates UI concepting, layout rhythm, card systems, and dashboard visual polish.",
+    note: "This is a UI concept, not a production dashboard.",
   },
 ];
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}
+
+export function getProjectSlugs() {
+  return projects.map((project) => project.slug);
+}
 
 export const featuredCaseStudy = {
   eyebrow: "Featured Case Study",

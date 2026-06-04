@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { FadeUp } from "@/components/motion/fade-up";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -159,15 +160,31 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               ))}
             </div>
             {hasExternalLink ? (
-              <a
-                aria-label={`View ${project.title} on GitHub`}
-                className="mt-6 inline-flex rounded-md border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
-                href={project.href}
-                rel="noreferrer"
-                target="_blank"
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  className="inline-flex rounded-md border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
+                  href={`/projects/${project.slug}`}
+                >
+                  View details
+                </Link>
+                <a
+                  aria-label={`View ${project.title} on GitHub`}
+                  className="inline-flex rounded-md border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
+                  href={project.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  View on GitHub
+                </a>
+              </div>
+            ) : null}
+            {!hasExternalLink ? (
+              <Link
+                className="mt-6 inline-flex rounded-md border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
+                href={`/projects/${project.slug}`}
               >
-                View on GitHub
-              </a>
+                View details
+              </Link>
             ) : null}
           </div>
           {(isPrimary || isSecondary) && <ProjectVisual type={project.visualType} />}
