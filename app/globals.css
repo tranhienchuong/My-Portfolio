@@ -116,6 +116,80 @@ a {
   animation: hero-gradient-shift 9s ease-in-out infinite;
 }
 
+.thc-ai-radar {
+  transform-origin: center;
+  animation: thc-ai-radar 4.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.thc-ai-status-dot {
+  animation: thc-ai-online 2.6s ease-in-out infinite;
+}
+
+.thc-ai-mark {
+  filter:
+    drop-shadow(0 0 8px hsl(var(--neon-cyan) / 0.42))
+    drop-shadow(0 0 14px hsl(var(--neon-purple) / 0.26));
+  transform-origin: center;
+  animation: thc-ai-float 4.2s ease-in-out infinite;
+}
+
+.thc-ai-mark svg {
+  overflow: visible;
+}
+
+.thc-ai-tooltip {
+  animation: thc-ai-tooltip-enter 320ms ease-out both;
+}
+
+.thc-ai-tooltip::after {
+  position: absolute;
+  right: 1.25rem;
+  bottom: -0.38rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  content: "";
+  background: hsl(var(--background) / 0.9);
+  border-right: 1px solid hsl(var(--neon-cyan) / 0.25);
+  border-bottom: 1px solid hsl(var(--neon-cyan) / 0.25);
+  transform: rotate(45deg);
+}
+
+.thc-ai-terminal-overlay {
+  opacity: 0.75;
+  background-image:
+    radial-gradient(circle at 15% 0%, hsl(var(--neon-cyan) / 0.13), transparent 34%),
+    radial-gradient(circle at 100% 8%, hsl(var(--neon-purple) / 0.16), transparent 32%),
+    linear-gradient(135deg, hsl(var(--neon-cyan) / 0.055), transparent 45%, hsl(var(--neon-pink) / 0.055)),
+    repeating-linear-gradient(
+      180deg,
+      hsl(var(--foreground) / 0.032) 0,
+      hsl(var(--foreground) / 0.032) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+}
+
+.thc-ai-terminal-overlay::after {
+  position: absolute;
+  inset: -35% 0;
+  content: "";
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      hsl(var(--neon-cyan) / 0.08) 47%,
+      hsl(var(--neon-purple) / 0.08) 52%,
+      transparent 58%
+    );
+  animation: thc-ai-scanline 8.5s linear infinite;
+}
+
+.thc-ai-typing-dot {
+  opacity: 0.35;
+  transform-origin: center;
+  animation: thc-ai-typing 1.15s ease-in-out infinite;
+}
+
 @media (pointer: fine) and (min-width: 768px) {
   body.cyber-cursor-enabled,
   body.cyber-cursor-enabled a,
@@ -130,6 +204,19 @@ a {
   }
 }
 
+body.cyber-cursor-enabled [data-native-cursor="true"],
+body.cyber-cursor-enabled [data-native-cursor="true"] * {
+  cursor: auto;
+}
+
+body.cyber-cursor-enabled [data-native-cursor="true"] button {
+  cursor: pointer;
+}
+
+body.cyber-cursor-enabled [data-native-cursor="true"] input {
+  cursor: text;
+}
+
 section[id] {
   scroll-margin-top: 5rem;
 }
@@ -137,6 +224,79 @@ section[id] {
 ::selection {
   background: hsl(var(--accent) / 0.28);
   color: hsl(var(--foreground));
+}
+
+@keyframes thc-ai-radar {
+  0% {
+    opacity: 0.24;
+    transform: scale(0.92);
+  }
+
+  72%,
+  100% {
+    opacity: 0;
+    transform: scale(1.24);
+  }
+}
+
+@keyframes thc-ai-online {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px hsl(var(--neon-cyan) / 0.64);
+  }
+
+  50% {
+    opacity: 0.72;
+    box-shadow: 0 0 13px hsl(var(--neon-cyan) / 0.78);
+  }
+}
+
+@keyframes thc-ai-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-2px) rotate(3deg);
+  }
+}
+
+@keyframes thc-ai-tooltip-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes thc-ai-scanline {
+  from {
+    transform: translateY(-42%);
+  }
+
+  to {
+    transform: translateY(42%);
+  }
+}
+
+@keyframes thc-ai-typing {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0) scale(0.85);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1);
+  }
 }
 
 @keyframes cyber-particle-drift {
@@ -243,5 +403,36 @@ section[id] {
     filter:
       drop-shadow(0 0 16px hsl(var(--neon-cyan) / 0.16))
       drop-shadow(0 0 30px hsl(var(--neon-purple) / 0.1));
+  }
+
+  .thc-ai-radar,
+  .thc-ai-status-dot,
+  .thc-ai-mark,
+  .thc-ai-tooltip,
+  .thc-ai-terminal-overlay::after,
+  .thc-ai-typing-dot {
+    animation: none !important;
+  }
+
+  .thc-ai-radar {
+    opacity: 0.12;
+    transform: none;
+  }
+
+  .thc-ai-mark {
+    transform: none;
+  }
+
+  .thc-ai-terminal-overlay::after {
+    display: none;
+  }
+
+  .thc-ai-tooltip {
+    transform: none;
+  }
+
+  .thc-ai-typing-dot {
+    opacity: 0.75;
+    transform: none;
   }
 }

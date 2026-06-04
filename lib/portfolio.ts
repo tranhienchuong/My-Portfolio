@@ -7,6 +7,12 @@ export const profile = {
   email: "tranhienchuong03062004@gmail.com",
   socials: [
     { label: "GitHub", href: "https://github.com/tranhienchuong" },
+    { label: "Facebook", href: "https://www.facebook.com/tran.chuongg.5/" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/tr%E1%BA%A7n-ch%C6%B0%C6%A1ng-aa36852a2/",
+    },
+    { label: "X", href: "https://x.com/chuong44760" },
   ],
 };
 

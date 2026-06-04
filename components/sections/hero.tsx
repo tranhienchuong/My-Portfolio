@@ -13,6 +13,9 @@ import { profile, stats } from "@/lib/portfolio";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    profile.email,
+  )}&su=${encodeURIComponent("Portfolio collaboration")}`;
 
   return (
     <section className="py-16 sm:py-20 lg:py-24">
@@ -42,7 +45,12 @@ export function Hero() {
           </motion.p>
           <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" variants={heroReveal}>
             <GlowButton href="#work">View work</GlowButton>
-            <GlowButton href={`mailto:${profile.email}`} variant="secondary">
+            <GlowButton
+              href={gmailComposeUrl}
+              rel="noreferrer"
+              target="_blank"
+              variant="secondary"
+            >
               Get in touch
             </GlowButton>
           </motion.div>
