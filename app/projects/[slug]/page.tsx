@@ -14,7 +14,7 @@ type ProjectPageProps = {
 function DetailVisual({ type }: { type: Project["visualType"] }) {
   if (type === "legal-ai") {
     return (
-      <div className="relative min-h-72 overflow-hidden rounded-lg border border-neon-cyan/20 bg-background/60 p-5">
+      <div className="relative min-h-60 overflow-hidden rounded-lg border border-neon-cyan/20 bg-background/60 p-4 sm:min-h-72 sm:p-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,theme(colors.neon.cyan/0.16),transparent_18rem),radial-gradient(circle_at_80%_70%,theme(colors.neon.purple/0.15),transparent_20rem)]" />
         <div className="relative grid gap-5 md:grid-cols-[1fr_0.85fr]">
           <div className="space-y-3">
@@ -31,7 +31,7 @@ function DetailVisual({ type }: { type: Project["visualType"] }) {
               </div>
             ))}
           </div>
-          <div className="relative min-h-56">
+          <div className="relative min-h-44 sm:min-h-56">
             <div className="absolute left-10 top-12 h-2 w-28 rotate-12 rounded-full bg-neon-cyan/35" />
             <div className="absolute left-24 top-28 h-2 w-32 -rotate-12 rounded-full bg-neon-purple/35" />
             {[
@@ -54,7 +54,7 @@ function DetailVisual({ type }: { type: Project["visualType"] }) {
 
   if (type === "mobile") {
     return (
-      <div className="relative flex min-h-72 items-center justify-center overflow-hidden rounded-lg border border-neon-pink/20 bg-background/60 p-5">
+      <div className="relative flex min-h-60 items-center justify-center overflow-hidden rounded-lg border border-neon-pink/20 bg-background/60 p-4 sm:min-h-72 sm:p-5">
         <div className="absolute inset-x-8 top-10 h-32 rounded-full bg-neon-pink/15 blur-3xl" />
         <div className="relative h-60 w-36 rounded-[1.75rem] border border-white/15 bg-black p-2 shadow-pink-glow">
           <div className="h-full rounded-[1.25rem] border border-white/10 bg-gradient-to-b from-neon-purple/20 to-neon-pink/10 p-3">
@@ -74,7 +74,7 @@ function DetailVisual({ type }: { type: Project["visualType"] }) {
   }
 
   return (
-    <div className="grid min-h-72 grid-cols-3 gap-3 rounded-lg border border-white/10 bg-background/60 p-5">
+    <div className="grid min-h-60 grid-cols-2 gap-3 rounded-lg border border-white/10 bg-background/60 p-4 sm:min-h-72 sm:grid-cols-3 sm:p-5">
       {[0, 1, 2, 3, 4, 5].map((item) => (
         <div className="rounded-md border border-white/10 bg-white/[0.055] p-3" key={item}>
           <div className="mb-3 h-2 w-10 rounded-full bg-neon-cyan/50" />
@@ -126,7 +126,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <div className="border-t border-white/10 py-12 sm:py-16">
       <Container>
         <Link
-          className="inline-flex text-sm font-semibold text-neon-cyan transition-colors hover:text-foreground"
+          aria-label="Back to homepage projects section"
+          className="inline-flex text-sm font-semibold text-neon-cyan transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
           href="/#work"
         >
           Back to projects
@@ -147,7 +148,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">
               {project.category}
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl break-words text-3xl font-semibold leading-tight text-foreground sm:text-5xl">
               {project.title}
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground">

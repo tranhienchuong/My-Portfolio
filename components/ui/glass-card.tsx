@@ -11,17 +11,19 @@ type GlassCardProps = Omit<
   Omit<HTMLMotionProps<"div">, "children"> & {
     children: ReactNode;
     interactive?: boolean;
+    performance?: boolean;
   };
 
 export function GlassCard({
   className,
   children,
   interactive = false,
+  performance = false,
   ...props
 }: GlassCardProps) {
   const reduceMotion = useReducedMotion();
   const hoverProps =
-    interactive && !reduceMotion
+    interactive && !performance && !reduceMotion
       ? {
           whileHover: { y: -6, scale: 1.015, rotateX: 1.5, rotateY: -1.5 },
           transition: { type: "spring" as const, stiffness: 260, damping: 22 },
@@ -31,10 +33,13 @@ export function GlassCard({
   return (
     <motion.div
       className={cn(
-        "relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.055] shadow-soft backdrop-blur-xl",
-        "before:pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/12 before:via-transparent before:to-transparent",
+        "relative overflow-hidden rounded-lg border border-white/10",
+        performance
+          ? "bg-white/[0.045] shadow-[0_18px_45px_hsl(240_70%_4%_/_0.28)] backdrop-blur-sm"
+          : "bg-white/[0.055] shadow-soft backdrop-blur-md sm:backdrop-blur-xl",
+        "before:pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-transparent",
         "after:pointer-events-none after:absolute after:inset-px after:rounded-[7px] after:border after:border-white/[0.035]",
-        interactive && "transform-gpu hover:border-neon-cyan/45",
+        interactive && !performance && "transform-gpu hover:border-neon-cyan/45",
         className,
       )}
       {...hoverProps}

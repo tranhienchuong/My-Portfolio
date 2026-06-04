@@ -3,15 +3,10 @@ export const profile = {
   role: "Frontend Developer",
   location: "Ho Chi Minh City, Vietnam",
   summary:
-    "I build polished, accessible web interfaces with a focus on maintainable systems, thoughtful details, and reliable user flows.",
-  email: "tranhienchuong03062004@gmail.com",
+    "A creative frontend portfolio featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
+  email: "chung03062004@gmail.com",
   socials: [
     { label: "GitHub", href: "https://github.com/tranhienchuong" },
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/tr%E1%BA%A7n-ch%C6%B0%C6%A1ng-aa36852a2/",
-    },
-    { label: "Resume", href: "/resume.pdf" },
   ],
 };
 

@@ -28,7 +28,7 @@ export function Hero() {
             {profile.role}
           </motion.p>
           <motion.h1
-            className="mt-5 max-w-3xl text-5xl font-semibold leading-tight text-foreground sm:text-6xl"
+            className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-foreground sm:text-6xl"
             variants={heroReveal}
           >
             <GradientText>{profile.name}</GradientText>
@@ -39,7 +39,7 @@ export function Hero() {
           >
             {profile.summary}
           </motion.p>
-          <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row" variants={heroReveal}>
+          <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" variants={heroReveal}>
             <GlowButton href="#work">View work</GlowButton>
             <GlowButton href={`mailto:${profile.email}`} variant="secondary">
               Get in touch

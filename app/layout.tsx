@@ -14,7 +14,8 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: `${profile.name} | ${profile.role}`,
-  description: profile.summary,
+  description:
+    "A creative frontend portfolio by Trần Hiến Chương, featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
 };
 
 export default function RootLayout({

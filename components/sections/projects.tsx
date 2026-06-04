@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
 function ProjectVisual({ type }: { type: Project["visualType"] }) {
   if (type === "legal-ai") {
     return (
-      <div className="relative min-h-64 overflow-hidden rounded-lg border border-neon-cyan/20 bg-background/50 p-5">
-        <div className="absolute right-5 top-5 h-20 w-20 rounded-full border border-neon-purple/25 bg-neon-purple/10 blur-xl" />
+      <div className="relative min-h-56 overflow-hidden rounded-lg border border-neon-cyan/20 bg-background/50 p-4 sm:min-h-64 sm:p-5">
+        <div className="absolute right-5 top-5 h-20 w-20 rounded-full border border-neon-purple/20 bg-neon-purple/10 opacity-70" />
         <div className="grid gap-4 md:grid-cols-[1fr_0.8fr]">
           <div className="space-y-3">
             {[0, 1, 2].map((item) => (
@@ -27,7 +27,7 @@ function ProjectVisual({ type }: { type: Project["visualType"] }) {
               </div>
             ))}
           </div>
-          <div className="relative min-h-52">
+          <div className="relative min-h-44 sm:min-h-52">
             <div className="absolute left-8 top-8 h-3 w-24 rotate-12 rounded-full bg-neon-cyan/30" />
             <div className="absolute left-20 top-24 h-3 w-28 -rotate-12 rounded-full bg-neon-purple/35" />
             <div className="absolute right-10 top-16 h-3 w-20 rotate-45 rounded-full bg-neon-cyan/25" />
@@ -39,7 +39,7 @@ function ProjectVisual({ type }: { type: Project["visualType"] }) {
             ].map((classes) => (
               <div
                 className={cn(
-                  "absolute h-14 w-14 rounded-full border bg-white/[0.055] shadow-glow backdrop-blur",
+                  "absolute h-14 w-14 rounded-full border bg-white/[0.055] shadow-[0_0_18px_hsl(185_100%_58%_/_0.12)]",
                   classes,
                 )}
                 key={classes}
@@ -55,7 +55,7 @@ function ProjectVisual({ type }: { type: Project["visualType"] }) {
 
   if (type === "mobile") {
     return (
-      <div className="relative flex min-h-64 items-center justify-center overflow-hidden rounded-lg border border-neon-pink/20 bg-background/50 p-5">
+      <div className="relative flex min-h-56 items-center justify-center overflow-hidden rounded-lg border border-neon-pink/20 bg-background/50 p-4 sm:min-h-64 sm:p-5">
         <div className="absolute inset-x-8 top-10 h-28 rounded-full bg-neon-pink/15 blur-3xl" />
         <div className="relative h-56 w-32 rounded-[1.75rem] border border-white/15 bg-black p-2 shadow-pink-glow">
           <div className="h-full rounded-[1.25rem] border border-white/10 bg-gradient-to-b from-neon-purple/20 to-neon-pink/10 p-3">
@@ -75,7 +75,7 @@ function ProjectVisual({ type }: { type: Project["visualType"] }) {
   }
 
   return (
-    <div className="grid min-h-40 grid-cols-3 gap-3 rounded-lg border border-white/10 bg-background/50 p-4">
+    <div className="grid min-h-40 grid-cols-2 gap-3 rounded-lg border border-white/10 bg-background/50 p-4 sm:grid-cols-3">
       {[0, 1, 2, 3, 4, 5].map((item) => (
         <div
           className="rounded-md border border-white/10 bg-white/[0.055] p-3"
@@ -104,11 +104,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       <GlassCard
         className={cn(
-          "h-full p-5 sm:p-6",
+          "group/project h-full p-5 transition-colors duration-200 hover:border-neon-cyan/45 hover:bg-white/[0.07] sm:p-6",
           isPrimary && "lg:p-7",
           isSecondary && "border-neon-pink/20",
         )}
-        interactive
+        interactive={false}
+        performance={isPrimary}
       >
         <article
           className={cn(
@@ -132,7 +133,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </p>
             <h3
               className={cn(
-                "mt-3 font-semibold leading-tight text-foreground",
+                "mt-3 font-semibold leading-tight text-foreground transition-colors duration-200 group-hover/project:text-neon-cyan",
                 isPrimary ? "text-3xl sm:text-4xl" : "text-2xl",
               )}
             >
@@ -162,6 +163,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {hasExternalLink ? (
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
+                  aria-label={`View details for ${project.title}`}
                   className="inline-flex rounded-md border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
                   href={`/projects/${project.slug}`}
                 >
@@ -180,6 +182,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             ) : null}
             {!hasExternalLink ? (
               <Link
+                aria-label={`View details for ${project.title}`}
                 className="mt-6 inline-flex rounded-md border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
                 href={`/projects/${project.slug}`}
               >

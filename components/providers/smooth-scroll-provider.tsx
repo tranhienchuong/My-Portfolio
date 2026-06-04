@@ -17,10 +17,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     }
 
     const lenis = new Lenis({
-      duration: 1.05,
-      easing: (time) => Math.min(1, 1.001 - Math.pow(2, -10 * time)),
+      duration: 0.45,
+      easing: (time) => 1 - Math.pow(1 - time, 3),
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.25,
     });
 
     let frameId = 0;

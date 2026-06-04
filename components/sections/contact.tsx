@@ -25,7 +25,14 @@ export function Contact() {
             <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
               <GlowButton href={`mailto:${profile.email}`}>Email me</GlowButton>
               {profile.socials.map((item) => (
-                <GlowButton href={item.href} key={item.label} variant="secondary">
+                <GlowButton
+                  aria-label={`Visit ${profile.name} on ${item.label}`}
+                  href={item.href}
+                  key={item.label}
+                  rel="noreferrer"
+                  target="_blank"
+                  variant="secondary"
+                >
                   {item.label}
                 </GlowButton>
               ))}
