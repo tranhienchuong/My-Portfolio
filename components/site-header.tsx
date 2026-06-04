@@ -3,11 +3,11 @@ import { Container } from "@/components/ui/container";
 import { profile } from "@/lib/portfolio";
 
 const navItems = [
-  { label: "Projects", href: "#work" },
-  { label: "Case Study", href: "#case-study" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "/#work" },
+  { label: "Case Study", href: "/#case-study" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function SiteHeader() {
