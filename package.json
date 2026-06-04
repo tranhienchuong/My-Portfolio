@@ -1,6 +1,7 @@
 {
-  "name": "portfolio",
+  "name": "tran-hien-chuong-portfolio",
   "version": "0.1.0",
+  "description": "A creative frontend portfolio featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
   "private": true,
   "scripts": {
     "dev": "next dev",

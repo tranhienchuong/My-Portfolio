@@ -1,10 +1,10 @@
 export const profile = {
   name: "Trần Hiến Chương",
-  role: "Frontend Developer",
-  location: "Ho Chi Minh City, Vietnam",
+  role: "Developer",
+  location: "Vietnam",
   summary:
     "A creative frontend portfolio featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
-  email: "chung03062004@gmail.com",
+  email: "tranhienchuong03062004@gmail.com",
   socials: [
     { label: "GitHub", href: "https://github.com/tranhienchuong" },
   ],
