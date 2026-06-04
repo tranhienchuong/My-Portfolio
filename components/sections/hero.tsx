@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import profileImage from "@/image/chuong.png";
+import profileImage from "@/image/profile.png";
 import { Container } from "@/components/ui/container";
 import { GlassCard } from "@/components/ui/glass-card";
 import { GlowButton } from "@/components/ui/glow-button";
@@ -64,7 +64,7 @@ export function Hero() {
               className="object-cover"
               fill
               priority
-              sizes="(min-width: 1024px) 384px, 90vw"
+              sizes="(min-width: 1024px) 384px, (min-width: 640px) 384px, 90vw"
               src={profileImage}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-neon-cyan/10" />
