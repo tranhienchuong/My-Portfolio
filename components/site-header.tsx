@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { profile } from "@/lib/portfolio";
 
 const navItems = [
-  { label: "Work", href: "#work" },
+  { label: "Projects", href: "#work" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },

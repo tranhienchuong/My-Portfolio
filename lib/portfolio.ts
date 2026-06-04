@@ -18,27 +18,108 @@ export const stats = [
   { label: "Mode", value: "Remote" },
 ];
 
-export const projects = [
+export type Project = {
+  title: string;
+  type: string;
+  category: string;
+  status: string;
+  description: string;
+  longDescription?: string;
+  tags: string[];
+  highlights: string[];
+  href?: string;
+  featured?: boolean;
+  visualType?: "legal-ai" | "mobile" | "portfolio" | "dashboard";
+};
+
+export const projects: Project[] = [
   {
-    title: "Portfolio Platform",
+    title: "Vietnamese Labor Law AI Assistant",
+    type: "Featured Project",
+    category: "AI / LegalTech / Thesis Project",
+    status: "Research Project",
     description:
-      "A responsive personal site with reusable content sections, dark theme foundations, and a component-first structure.",
-    tags: ["Next.js", "TypeScript", "Tailwind"],
-    href: "#",
+      "A scoped Vietnamese labor-law question-answering assistant that combines retrieval-augmented generation, hybrid retrieval, legal graph expansion, grounded answer generation, and citation validation.",
+    longDescription:
+      "This project explores how AI can help users search and understand Vietnamese labor-law documents in a controlled, citation-aware way. The assistant retrieves legal context, expands it through a legal knowledge graph, and validates citations before producing a grounded answer.",
+    tags: [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "TypeScript",
+      "Qdrant",
+      "Neo4j",
+      "RAG",
+      "GraphRAG",
+      "LLM",
+    ],
+    highlights: [
+      "Scoped Vietnamese labor-law corpus",
+      "Hybrid dense/sparse retrieval with Qdrant",
+      "Legal graph expansion with Neo4j",
+      "Grounded answer generation",
+      "Deterministic citation validation",
+      "Evaluation and reproducibility pipeline",
+    ],
+    href: "https://github.com/tranhienchuong/vietnamese-labor-law-ai-assistant",
+    featured: true,
+    visualType: "legal-ai",
   },
   {
-    title: "Design System Starter",
+    title: "Gia Phả Việt",
+    type: "Mobile Prototype",
+    category: "Android / AI Studio / Personal Project",
+    status: "In Progress",
     description:
-      "Reusable UI primitives, consistent spacing, semantic tokens, and accessible states for product interfaces.",
-    tags: ["Components", "Tokens", "Accessibility"],
-    href: "#",
+      "An Android/Kotlin mobile app experiment for exploring a Vietnamese family-tree product idea, connected to an AI Studio workflow and Gemini API setup.",
+    longDescription:
+      "Gia Phả Việt is an early-stage mobile product experiment. It is presented as a prototype and learning project, not as a finished production app.",
+    tags: ["Kotlin", "Android Studio", "Gemini API", "AI Studio", "Mobile App"],
+    highlights: [
+      "Android/Kotlin codebase",
+      "AI Studio generated workflow",
+      "Gemini API environment setup",
+      "Mobile prototype structure",
+    ],
+    href: "https://github.com/tranhienchuong/gia-pha-viet",
+    featured: true,
+    visualType: "mobile",
   },
   {
-    title: "Dashboard Experience",
+    title: "Creative Portfolio System",
+    type: "Personal Project",
+    category: "Frontend / Motion Design",
+    status: "In Progress",
     description:
-      "A clean operational dashboard concept focused on scannable metrics, responsive layout, and focused workflows.",
-    tags: ["UX", "Data UI", "Responsive"],
+      "A visual-first portfolio system built to explore color, motion, glassmorphism, responsive layout, and interactive UI.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Motion", "GSAP"],
+    highlights: [
+      "Dark neon visual system",
+      "Smooth scroll and reveal animations",
+      "Reusable UI components",
+      "Responsive layout",
+    ],
     href: "#",
+    featured: false,
+    visualType: "portfolio",
+  },
+  {
+    title: "Neon Analytics Dashboard",
+    type: "UI Concept",
+    category: "Dashboard / Interface Design",
+    status: "Concept",
+    description:
+      "A glowing dashboard concept focused on responsive cards, animated numbers, glass panels, and dark interface polish.",
+    tags: ["Next.js", "Tailwind CSS", "Motion"],
+    highlights: [
+      "Glassmorphism dashboard cards",
+      "Dark UI composition",
+      "Animated data blocks",
+      "Responsive layout concept",
+    ],
+    href: "#",
+    featured: false,
+    visualType: "dashboard",
   },
 ];
 
