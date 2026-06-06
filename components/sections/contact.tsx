@@ -9,26 +9,33 @@ import { GlowButton } from "@/components/ui/glow-button";
 import { GradientText } from "@/components/ui/gradient-text";
 import { profile } from "@/lib/portfolio";
 
-const gmailComposeUrl =
-  "https://mail.google.com/mail/?view=cm&fs=1&to=tranhienchuong03062004@gmail.com&su=Portfolio%20collaboration";
+const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+  profile.email,
+)}&su=${encodeURIComponent("Portfolio collaboration")}`;
+
+type CopyStatus = "idle" | "copied" | "failed";
 
 export function Contact() {
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
   const copyTimerRef = useRef<number | null>(null);
   const contactSocials = profile.socials.filter((social) =>
     ["GitHub", "Facebook", "LinkedIn"].includes(social.label),
   );
 
   async function copyEmail() {
-    await navigator.clipboard.writeText(profile.email);
-    setCopied(true);
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("failed");
+    }
 
     if (copyTimerRef.current) {
       window.clearTimeout(copyTimerRef.current);
     }
 
     copyTimerRef.current = window.setTimeout(() => {
-      setCopied(false);
+      setCopyStatus("idle");
     }, 1800);
   }
 
@@ -69,11 +76,16 @@ export function Contact() {
                 </GlowButton>
                 <button
                   aria-label="Copy email address"
+                  aria-live="polite"
                   className="inline-flex h-11 items-center justify-center rounded-md border border-white/12 bg-white/[0.055] px-5 text-sm font-semibold text-foreground backdrop-blur-md transition-colors hover:border-neon-cyan/50 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
                   onClick={() => void copyEmail()}
                   type="button"
                 >
-                  {copied ? "Copied" : "Copy email"}
+                  {copyStatus === "copied"
+                    ? "Copied"
+                    : copyStatus === "failed"
+                      ? "Copy failed"
+                      : "Copy email"}
                 </button>
               </div>
 

@@ -94,6 +94,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isPrimary = index === 0;
   const isSecondary = index === 1;
   const hasExternalLink = project.href && project.href !== "#";
+  const visibleHighlights = project.highlights.slice(
+    0,
+    isPrimary ? 3 : isSecondary ? 2 : 0,
+  );
+  const visibleTags = project.tags.slice(0, isPrimary ? 5 : isSecondary ? 4 : 3);
+  const hiddenTagCount = project.tags.length - visibleTags.length;
+  const tierLabel = isPrimary
+    ? "Main Build"
+    : isSecondary
+      ? "Prototype / Product Experiment"
+      : project.type;
+  const shouldShowHighlights = visibleHighlights.length > 0;
 
   return (
     <FadeUp
@@ -105,9 +117,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       <GlassCard
         className={cn(
-          "group/project h-full p-5 transition-colors duration-200 hover:border-neon-cyan/45 hover:bg-white/[0.07] sm:p-6",
-          isPrimary && "lg:p-7",
-          isSecondary && "border-neon-pink/20",
+          "group/project h-full p-5 transition-[background-color,border-color,box-shadow] duration-200 sm:p-6",
+          isPrimary &&
+            "border-neon-cyan/20 bg-white/[0.055] shadow-[0_22px_64px_hsl(240_80%_3%_/_0.4),0_0_34px_hsl(var(--neon-cyan)/0.1)] hover:border-neon-cyan/45 hover:bg-white/[0.07] lg:p-7",
+          isSecondary &&
+            "border-neon-pink/20 bg-white/[0.048] hover:border-neon-pink/35 hover:bg-white/[0.06]",
+          index > 1 &&
+            "border-white/[0.08] bg-white/[0.04] hover:border-neon-cyan/30 hover:bg-white/[0.052]",
         )}
         interactive={false}
         performance={isPrimary}
@@ -120,9 +136,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         >
           <div>
             <div className="flex flex-wrap gap-2">
-              {[project.type, project.status].map((item) => (
+              {[tierLabel, project.status].map((item) => (
                 <span
-                  className="rounded-md border border-white/10 bg-white/[0.045] px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                  className={cn(
+                    "rounded-md border px-2.5 py-1 text-xs font-medium",
+                    item === tierLabel
+                      ? "border-neon-cyan/25 bg-neon-cyan/10 text-neon-cyan"
+                      : "border-white/10 bg-white/[0.045] text-muted-foreground",
+                  )}
                   key={item}
                 >
                   {item}
@@ -135,24 +156,35 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <h3
               className={cn(
                 "mt-3 font-semibold leading-tight text-foreground transition-colors duration-200 group-hover/project:text-neon-cyan",
-                isPrimary ? "text-3xl sm:text-4xl" : "text-2xl",
+                isPrimary
+                  ? "text-3xl sm:text-4xl"
+                  : isSecondary
+                    ? "text-2xl"
+                    : "text-xl sm:text-2xl",
               )}
             >
               {project.title}
             </h3>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              {project.longDescription ?? project.description}
+            <p
+              className={cn(
+                "mt-4 text-muted-foreground",
+                isPrimary ? "text-base leading-7" : "text-sm leading-6",
+              )}
+            >
+              {project.description}
             </p>
-            <ul className="mt-6 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-              {project.highlights.slice(0, isPrimary ? 6 : 4).map((highlight) => (
-                <li className="flex gap-2" key={highlight}>
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
+            {shouldShowHighlights ? (
+              <ul className="mt-6 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                {visibleHighlights.map((highlight) => (
+                  <li className="flex gap-2" key={highlight}>
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             <div className="mt-6 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
+              {visibleTags.map((tag) => (
                 <span
                   className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-muted-foreground"
                   key={tag}
@@ -160,19 +192,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   {tag}
                 </span>
               ))}
+              {hiddenTagCount > 0 ? (
+                <span className="rounded-md border border-neon-cyan/15 bg-neon-cyan/10 px-2.5 py-1 text-xs text-neon-cyan">
+                  +{hiddenTagCount} more
+                </span>
+              ) : null}
             </div>
             {hasExternalLink ? (
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   aria-label={`View details for ${project.title}`}
-                  className="inline-flex rounded-none border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
+                  className="inline-flex rounded-none border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple shadow-[inset_0_1px_0_hsl(var(--foreground)/0.05)] transition-[background-color,border-color,box-shadow,color] [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-purple/70 hover:bg-neon-purple/15 hover:shadow-[0_0_20px_hsl(var(--neon-purple)/0.12)] focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
                   href={`/projects/${project.slug}`}
                 >
                   View details
                 </Link>
                 <a
                   aria-label={`View ${project.title} on GitHub`}
-                  className="inline-flex rounded-none border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-cyan/70 hover:bg-neon-cyan/15 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
+                  className="inline-flex rounded-none border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2 text-sm font-semibold text-neon-cyan shadow-[inset_0_1px_0_hsl(var(--foreground)/0.05)] transition-[background-color,border-color,box-shadow,color] [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-cyan/70 hover:bg-neon-cyan/15 hover:shadow-[0_0_20px_hsl(var(--neon-cyan)/0.12)] focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background"
                   href={project.href}
                   rel="noreferrer"
                   target="_blank"
@@ -184,7 +221,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {!hasExternalLink ? (
               <Link
                 aria-label={`View details for ${project.title}`}
-                className="mt-6 inline-flex rounded-none border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple transition-colors [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-purple/70 hover:bg-neon-purple/15 focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
+                className="mt-6 inline-flex rounded-none border border-neon-purple/30 bg-neon-purple/10 px-4 py-2 text-sm font-semibold text-neon-purple shadow-[inset_0_1px_0_hsl(var(--foreground)/0.05)] transition-[background-color,border-color,box-shadow,color] [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,9px_100%,0_calc(100%-9px))] hover:border-neon-purple/70 hover:bg-neon-purple/15 hover:shadow-[0_0_20px_hsl(var(--neon-purple)/0.12)] focus:outline-none focus:ring-2 focus:ring-neon-purple focus:ring-offset-2 focus:ring-offset-background"
                 href={`/projects/${project.slug}`}
               >
                 View details
@@ -200,16 +237,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export function Projects() {
   return (
-    <section className="border-t border-white/10 py-16 sm:py-20" id="work">
+    <section className="border-t border-white/10 py-16 sm:py-24" id="work">
       <Container>
         <FadeUp>
           <SectionHeading
-            eyebrow="Projects & Experiments"
-            title="Real projects, research builds, and visual experiments."
-            description="A mix of real projects, research work, mobile prototypes, and UI experiments - built to explore AI, frontend systems, interaction design, and polished digital experiences."
+            eyebrow="Selected builds"
+            title="Tools, prototypes, research demos, and UI experiments."
+            description="Start with the legal-tech research assistant and Android prototype, then scan smaller concepts and experiments built from curiosity, code, design, and AI tools."
           />
         </FadeUp>
-        <div className="mt-10 grid gap-5 lg:grid-cols-12">
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-12">
           {projects.map((project, index) => (
             <ProjectCard index={index} key={project.title} project={project} />
           ))}

@@ -10,9 +10,12 @@ type SmoothScrollProviderProps = {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
 
-    if (mediaQuery.matches) {
+    if (prefersReducedMotion || isTouchDevice) {
       return undefined;
     }
 

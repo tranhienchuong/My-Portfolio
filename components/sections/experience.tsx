@@ -10,9 +10,9 @@ export function Experience() {
       <Container>
         <FadeUp>
           <SectionHeading
-            eyebrow="Experience"
-            title="A concise timeline with room to grow."
-            description="Keep this section outcome-focused as you add real roles, freelance work, or featured collaborations."
+            eyebrow="Build log"
+            title="Independent practice without inflated claims."
+            description="A transparent timeline of personal builds, coursework, self-directed practice, and experiments."
           />
         </FadeUp>
         <div className="mt-10 space-y-5">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { AiAssistantWidget } from "@/components/ai-assistant/ai-assistant-widget";
+import { AiAssistantDynamic } from "@/components/ai-assistant/ai-assistant-dynamic";
 import { AnimatedBackground } from "@/components/effects/animated-background";
 import { CyberCursor } from "@/components/effects/CyberCursor";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
@@ -16,8 +16,7 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: `${profile.name} | ${profile.role}`,
-  description:
-    "A creative frontend portfolio featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
+  description: profile.summary,
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -42,7 +41,7 @@ export default function RootLayout({
           <SiteHeader />
           <main>{children}</main>
           <SiteFooter />
-          <AiAssistantWidget />
+          <AiAssistantDynamic />
           <CyberCursor />
         </SmoothScrollProvider>
       </body>
