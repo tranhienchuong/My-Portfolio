@@ -39,32 +39,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  content: "";
-  background-image:
-    linear-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--foreground) / 0.035) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(circle at top, black, transparent 75%);
-}
-
-body::after {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  content: "";
-  opacity: 0.42;
-  background-image:
-    radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.16) 1px, transparent 0);
-  background-size: 22px 22px;
-  mix-blend-mode: soft-light;
-}
-
 header,
 main,
 footer {

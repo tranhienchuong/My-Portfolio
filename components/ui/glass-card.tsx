@@ -25,8 +25,8 @@ export function GlassCard({
   const hoverProps =
     interactive && !performance && !reduceMotion
       ? {
-          whileHover: { y: -4, scale: 1.01 },
-          transition: { type: "spring" as const, stiffness: 260, damping: 24 },
+          whileHover: { y: -3, scale: 1.006 },
+          transition: { type: "spring" as const, stiffness: 240, damping: 26 },
         }
       : {};
 

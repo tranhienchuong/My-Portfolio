@@ -12,7 +12,7 @@ import { GradientText } from "@/components/ui/gradient-text";
 import { heroReveal, heroStagger } from "@/lib/motion";
 import { heroIdentityPhrases, profile, stats } from "@/lib/portfolio";
 
-const HERO_IDENTITY_INTERVAL_MS = 2300;
+const HERO_IDENTITY_INTERVAL_MS = 2600;
 
 function RotatingIdentity({ reduceMotion }: { reduceMotion: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -44,11 +44,12 @@ function RotatingIdentity({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <AnimatePresence mode="wait">
       <motion.span
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
-        initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+        animate={{ opacity: 1, y: 0 }}
+        className="inline-block"
+        exit={{ opacity: 0, y: -8 }}
+        initial={{ opacity: 0, y: 8 }}
         key={phrase}
-        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
       >
         {phrase}
       </motion.span>
