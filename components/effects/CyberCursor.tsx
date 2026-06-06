@@ -9,16 +9,24 @@ export function CyberCursor() {
 
   useEffect(() => {
     const pointerQuery = window.matchMedia("(pointer: fine) and (min-width: 768px)");
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: no-preference)");
-    const updateEnabled = () => setEnabled(pointerQuery.matches && motionQuery.matches);
+    const touchQuery = window.matchMedia("(hover: none)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateEnabled = () =>
+      setEnabled(
+        pointerQuery.matches &&
+          !touchQuery.matches &&
+          !reducedMotionQuery.matches,
+      );
 
     updateEnabled();
     pointerQuery.addEventListener("change", updateEnabled);
-    motionQuery.addEventListener("change", updateEnabled);
+    touchQuery.addEventListener("change", updateEnabled);
+    reducedMotionQuery.addEventListener("change", updateEnabled);
 
     return () => {
       pointerQuery.removeEventListener("change", updateEnabled);
-      motionQuery.removeEventListener("change", updateEnabled);
+      touchQuery.removeEventListener("change", updateEnabled);
+      reducedMotionQuery.removeEventListener("change", updateEnabled);
     };
   }, []);
 

@@ -33,7 +33,7 @@ export function GlowButton({
         "focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-background",
         variant === "primary"
           ? "bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-white shadow-glow hover:brightness-110"
-          : "border border-white/12 bg-white/[0.055] text-foreground backdrop-blur-md hover:border-neon-cyan/50 hover:bg-white/[0.08] sm:backdrop-blur-xl",
+          : "border border-white/12 bg-white/[0.055] text-foreground backdrop-blur-sm hover:border-neon-cyan/50 hover:bg-white/[0.08] sm:backdrop-blur-md",
         className,
       )}
       href={href}

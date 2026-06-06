@@ -79,7 +79,11 @@ function AnimatedStarLayer({ reduceMotion }: { reduceMotion: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    if (reduceMotion) {
+    const prefersReducedMotion =
+      reduceMotion ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
       return undefined;
     }
 
@@ -108,7 +112,7 @@ function AnimatedStarLayer({ reduceMotion }: { reduceMotion: boolean }) {
       canvas.height = Math.max(1, Math.floor(height * pixelRatio));
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 
-      const particleCount = width < 640 ? 30 : width < 1024 ? 46 : 64;
+      const particleCount = width < 640 ? 0 : width < 1024 ? 24 : 40;
       particles = Array.from({ length: particleCount }, () =>
         createParticle(width, height),
       );

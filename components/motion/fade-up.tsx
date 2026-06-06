@@ -26,7 +26,7 @@ export function FadeUp({
       className={className}
       initial="hidden"
       variants={fadeUp}
-      viewport={{ once, amount: 0.24 }}
+      viewport={{ once, amount: 0.2 }}
       whileInView="visible"
     >
       {children}
