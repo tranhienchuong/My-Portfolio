@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div>
           <p className="font-semibold text-foreground">{profile.name}</p>
           <p className="mt-1">
-            {profile.role} focused on colorful frontend interfaces.
+            {profile.role} making tools, interfaces, stories, and honest experiments.
           </p>
           <p className="mt-1">&copy; {new Date().getFullYear()} {profile.name}</p>
         </div>

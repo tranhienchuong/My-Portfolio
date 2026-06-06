@@ -16,8 +16,7 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: `${profile.name} | ${profile.role}`,
-  description:
-    "A creative frontend portfolio featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
+  description: profile.summary,
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

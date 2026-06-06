@@ -44,14 +44,14 @@ export function Hero() {
             {profile.summary}
           </motion.p>
           <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" variants={heroReveal}>
-            <GlowButton href="#work">View work</GlowButton>
+            <GlowButton href="#work">Explore builds</GlowButton>
             <GlowButton
               href={gmailComposeUrl}
               rel="noreferrer"
               target="_blank"
               variant="secondary"
             >
-              Get in touch
+              Contact me
             </GlowButton>
           </motion.div>
           <motion.dl className="mt-12 grid gap-4 sm:grid-cols-3" variants={heroReveal}>

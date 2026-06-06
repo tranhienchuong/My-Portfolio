@@ -94,6 +94,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isPrimary = index === 0;
   const isSecondary = index === 1;
   const hasExternalLink = project.href && project.href !== "#";
+  const visibleHighlights = project.highlights.slice(0, isPrimary ? 4 : 3);
+  const visibleTags = project.tags.slice(0, isPrimary ? 7 : isSecondary ? 5 : 4);
+  const hiddenTagCount = project.tags.length - visibleTags.length;
 
   return (
     <FadeUp
@@ -141,10 +144,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               {project.title}
             </h3>
             <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              {project.longDescription ?? project.description}
+              {project.description}
             </p>
             <ul className="mt-6 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-              {project.highlights.slice(0, isPrimary ? 6 : 4).map((highlight) => (
+              {visibleHighlights.map((highlight) => (
                 <li className="flex gap-2" key={highlight}>
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
                   <span>{highlight}</span>
@@ -152,7 +155,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               ))}
             </ul>
             <div className="mt-6 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
+              {visibleTags.map((tag) => (
                 <span
                   className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-muted-foreground"
                   key={tag}
@@ -160,6 +163,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   {tag}
                 </span>
               ))}
+              {hiddenTagCount > 0 ? (
+                <span className="rounded-md border border-neon-cyan/15 bg-neon-cyan/10 px-2.5 py-1 text-xs text-neon-cyan">
+                  +{hiddenTagCount} more
+                </span>
+              ) : null}
             </div>
             {hasExternalLink ? (
               <div className="mt-6 flex flex-wrap gap-3">
@@ -204,9 +212,9 @@ export function Projects() {
       <Container>
         <FadeUp>
           <SectionHeading
-            eyebrow="Projects & Experiments"
-            title="Real projects, research builds, and visual experiments."
-            description="A mix of real projects, research work, mobile prototypes, and UI experiments - built to explore AI, frontend systems, interaction design, and polished digital experiences."
+            eyebrow="Selected builds"
+            title="Tools, prototypes, research demos, and UI experiments."
+            description="Start with the legal-tech research assistant and Android prototype, then scan smaller concepts and experiments built from curiosity, code, design, and AI tools."
           />
         </FadeUp>
         <div className="mt-10 grid gap-5 lg:grid-cols-12">

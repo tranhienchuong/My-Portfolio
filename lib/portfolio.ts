@@ -1,9 +1,9 @@
 export const profile = {
   name: "Trần Hiến Chương",
-  role: "Developer",
+  role: "Independent Builder",
   location: "Vietnam",
   summary:
-    "A creative frontend portfolio featuring AI-assisted projects, legal-tech research, mobile prototypes, and colorful interactive web interfaces.",
+    "Turning curiosity into products, and products into freedom through code, design, AI tools, and honest experiments. I build tools, interfaces, stories, prototypes, and research demos without pretending they are bigger than they are.",
   email: "tranhienchuong03062004@gmail.com",
   socials: [
     { label: "GitHub", href: "https://github.com/tranhienchuong" },
@@ -17,9 +17,9 @@ export const profile = {
 };
 
 export const stats = [
-  { label: "Focus", value: "UI Systems" },
-  { label: "Stack", value: "Next.js" },
-  { label: "Mode", value: "Remote" },
+  { label: "Builder mode", value: "Tools + Stories" },
+  { label: "Materials", value: "Code / Design / AI" },
+  { label: "Current experiments", value: "LegalTech + Mobile" },
 ];
 
 export type Project = {
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     category: "AI / LegalTech / Thesis Project",
     status: "Research Project",
     description:
-      "A scoped Vietnamese labor-law question-answering assistant that combines retrieval-augmented generation, hybrid retrieval, legal graph expansion, grounded answer generation, and citation validation.",
+      "A Vietnamese labor-law research assistant that combines retrieval, legal graph context, grounded answer generation, and citation checks.",
     longDescription:
       "This project explores how AI can help users search and understand Vietnamese labor-law documents in a controlled, citation-aware way. The assistant retrieves legal context, expands it through a legal knowledge graph, and validates citations before producing a grounded answer.",
     tags: [
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     category: "Android / AI Studio / Personal Project",
     status: "In Progress",
     description:
-      "An Android/Kotlin mobile app experiment for exploring a Vietnamese family-tree product idea, connected to an AI Studio workflow and Gemini API setup.",
+      "An Android/Kotlin prototype exploring a Vietnamese family-tree product idea, prepared around an AI Studio workflow and Gemini API setup.",
     longDescription:
       "Gia Phả Việt is an early-stage mobile product experiment. It is presented as a prototype and learning project, not as a finished production app.",
     tags: ["Kotlin", "Android Studio", "Gemini API", "AI Studio", "Mobile App"],
@@ -117,10 +117,10 @@ export const projects: Project[] = [
     category: "Frontend / Motion Design",
     status: "In Progress",
     description:
-      "A visual-first portfolio system built to explore color, motion, glassmorphism, responsive layout, and interactive UI.",
+      "This portfolio project: a dark neon Next.js interface focused on reusable sections, responsive layout, motion, and honest project presentation.",
     longDescription:
       "A visual-first portfolio system built to explore color, motion, glassmorphism, responsive layout, and interactive UI while keeping content editable and components reusable.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Motion", "GSAP"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
     highlights: [
       "Dark neon visual system",
       "Smooth scroll and reveal animations",
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     problem:
       "A beginner portfolio can feel empty if it only lists projects without strong visual identity or interaction polish.",
     solution:
-      "This portfolio uses dark neon visuals, glassmorphism, motion, responsive layout, and reusable components to turn the portfolio itself into a polished project.",
+      "This portfolio uses dark neon visuals, glassmorphism, Motion, responsive layout, and reusable components to turn the portfolio itself into a polished project.",
     outcome:
       "The project demonstrates frontend UI composition, component structure, responsive design, and motion-focused presentation.",
     note: "This is a personal portfolio system and visual experiment.",
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     category: "Dashboard / Interface Design",
     status: "Concept",
     description:
-      "A glowing dashboard concept focused on responsive cards, animated numbers, glass panels, and dark interface polish.",
+      "A dashboard UI concept for practicing card hierarchy, dark interface composition, responsive grids, and readable data blocks.",
     longDescription:
       "A glowing dashboard concept focused on responsive cards, animated numbers, glass panels, and dark interface polish for a structured, scannable interface study.",
     tags: ["Next.js", "Tailwind CSS", "Motion"],
@@ -178,16 +178,16 @@ export function getProjectSlugs() {
 
 export const featuredCaseStudy = {
   eyebrow: "Featured Case Study",
-  title: "Building a citation-aware Vietnamese labor-law AI assistant.",
+  title: "Citation-aware AI for Vietnamese labor-law research.",
   description:
-    "A closer look at how the project combines retrieval, legal-document structure, graph expansion, and citation validation to produce grounded legal-information responses.",
+    "A closer look at the real research build behind the portfolio: retrieval, legal-document structure, graph context, and citation validation.",
   problem: {
     title: "The problem",
-    text: "Vietnamese labor-law information is often fragmented across official documents, decrees, circulars, and legal interpretations. A user may ask a natural-language question, but the answer should still be grounded in relevant legal context instead of unsupported generation.",
+    text: "Vietnamese labor-law information is spread across official documents and related legal structures. A natural-language answer needs to stay tied to retrieved legal context instead of unsupported model output.",
   },
   solution: {
     title: "The solution",
-    text: "The assistant uses a scoped legal corpus and retrieval-augmented generation flow. It retrieves relevant legal context, expands related legal concepts through a knowledge graph, and validates citations before producing a final response.",
+    text: "The assistant uses a scoped corpus, hybrid retrieval, graph expansion, grounded generation, and deterministic citation validation before returning a legal-information response.",
   },
   architecture: [
     "User question",
@@ -247,17 +247,17 @@ export const processSteps = [
   {
     title: "Explore",
     description:
-      "Collect references, define the interaction goal, and keep the idea honest to the project scope.",
+      "Follow curiosity, collect references, and decide what the experiment is actually trying to prove.",
   },
   {
     title: "Structure",
     description:
-      "Break the interface into reusable components, editable content, and predictable layout rules.",
+      "Turn the idea into reusable pieces, editable content, and a clear interface or tool shape.",
   },
   {
     title: "Polish",
     description:
-      "Refine contrast, spacing, motion, and responsive behavior without adding unnecessary complexity.",
+      "Refine contrast, spacing, motion, and responsive behavior without pretending the build is more finished than it is.",
   },
 ];
 
@@ -274,17 +274,17 @@ export const skills = [
 
 export const experience = [
   {
-    company: "Independent Projects",
-    role: "Frontend Developer",
+    company: "Independent Builds",
+    role: "Tools, Interfaces, Experiments",
     period: "2024 - Present",
     description:
-      "Designing and building modern web experiences with clear structure, responsive layouts, and reusable components.",
+      "Building personal tools, portfolio systems, research demos, mobile prototypes, and UI concepts with code, design, and AI-assisted workflows.",
   },
   {
-    company: "Learning Lab",
-    role: "Web Developer",
+    company: "Self-directed Practice",
+    role: "Code, Design, AI Tools",
     period: "2023 - 2024",
     description:
-      "Practiced product-focused frontend development across React, styling systems, and production workflows.",
+      "Practiced React, TypeScript, Tailwind CSS, accessibility basics, interface thinking, and small product experiments through coursework and personal builds.",
   },
 ];
