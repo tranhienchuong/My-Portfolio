@@ -63,8 +63,8 @@ export function Hero() {
   )}&su=${encodeURIComponent("Portfolio collaboration")}`;
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24">
-      <Container className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+    <section className="py-16 sm:py-24 lg:py-28">
+      <Container className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <motion.div
           initial={reduceMotion ? false : "hidden"}
           variants={heroStagger}
@@ -77,14 +77,14 @@ export function Hero() {
             <FlickerText>{profile.role}</FlickerText>
           </motion.p>
           <motion.h1
-            className="mt-5 max-w-4xl text-5xl font-semibold leading-none tracking-tight text-foreground sm:text-7xl lg:text-8xl"
+            className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.94] text-foreground sm:text-7xl lg:text-8xl"
             variants={heroReveal}
           >
             <GradientText className="hero-gradient-name">{profile.displayName}</GradientText>
           </motion.h1>
           <motion.div
             aria-label={`Personal lab identity: ${heroIdentityPhrases.join(", ")}`}
-            className="mt-6 max-w-2xl rounded-lg border border-neon-cyan/20 bg-white/[0.045] p-3 shadow-[0_0_34px_hsl(var(--neon-cyan)/0.08),inset_0_1px_0_hsl(var(--foreground)/0.08)] backdrop-blur-sm"
+            className="mt-6 max-w-2xl rounded-lg border border-neon-cyan/20 bg-white/[0.045] p-3 shadow-[0_0_28px_hsl(var(--neon-cyan)/0.08),inset_0_1px_0_hsl(var(--foreground)/0.08)] backdrop-blur-sm sm:p-4"
             variants={heroReveal}
           >
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
@@ -110,7 +110,7 @@ export function Hero() {
             </div>
           </motion.div>
           <motion.p
-            className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground"
+            className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg"
             variants={heroReveal}
           >
             {profile.summary}
@@ -128,15 +128,17 @@ export function Hero() {
           </motion.div>
           <motion.dl className="mt-12 grid gap-4 sm:grid-cols-3" variants={heroReveal}>
             {stats.map((stat) => (
-              <GlassCard className="p-4" interactive key={stat.label}>
-                <dt className="text-sm text-muted-foreground">{stat.label}</dt>
-                <dd className="mt-1 text-base font-medium text-foreground">{stat.value}</dd>
+              <GlassCard className="p-4 sm:p-5" interactive key={stat.label}>
+                <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {stat.label}
+                </dt>
+                <dd className="mt-2 text-base font-semibold text-foreground">{stat.value}</dd>
               </GlassCard>
             ))}
           </motion.dl>
         </motion.div>
         <GlassCard
-          className="mx-auto aspect-[4/5] w-full max-w-sm p-2 shadow-pink-glow lg:mr-0"
+          className="mx-auto aspect-[4/5] w-full max-w-sm border-neon-pink/20 p-2 shadow-[0_20px_70px_hsl(260_90%_4%_/_0.36),0_0_34px_hsl(var(--neon-pink)/0.18)] lg:mr-0"
           interactive
         >
           <div className="relative h-full overflow-hidden rounded-md">
