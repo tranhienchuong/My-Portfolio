@@ -94,9 +94,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isPrimary = index === 0;
   const isSecondary = index === 1;
   const hasExternalLink = project.href && project.href !== "#";
-  const visibleHighlights = project.highlights.slice(0, isPrimary ? 4 : 3);
-  const visibleTags = project.tags.slice(0, isPrimary ? 7 : isSecondary ? 5 : 4);
+  const visibleHighlights = project.highlights.slice(
+    0,
+    isPrimary ? 3 : isSecondary ? 2 : 0,
+  );
+  const visibleTags = project.tags.slice(0, isPrimary ? 5 : isSecondary ? 4 : 3);
   const hiddenTagCount = project.tags.length - visibleTags.length;
+  const tierLabel = isPrimary
+    ? "Main Build"
+    : isSecondary
+      ? "Prototype / Product Experiment"
+      : project.type;
+  const shouldShowHighlights = visibleHighlights.length > 0;
 
   return (
     <FadeUp
@@ -123,9 +132,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         >
           <div>
             <div className="flex flex-wrap gap-2">
-              {[project.type, project.status].map((item) => (
+              {[tierLabel, project.status].map((item) => (
                 <span
-                  className="rounded-md border border-white/10 bg-white/[0.045] px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                  className={cn(
+                    "rounded-md border px-2.5 py-1 text-xs font-medium",
+                    item === tierLabel
+                      ? "border-neon-cyan/25 bg-neon-cyan/10 text-neon-cyan"
+                      : "border-white/10 bg-white/[0.045] text-muted-foreground",
+                  )}
                   key={item}
                 >
                   {item}
@@ -146,14 +160,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <p className="mt-4 text-sm leading-6 text-muted-foreground">
               {project.description}
             </p>
-            <ul className="mt-6 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-              {visibleHighlights.map((highlight) => (
-                <li className="flex gap-2" key={highlight}>
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
+            {shouldShowHighlights ? (
+              <ul className="mt-6 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                {visibleHighlights.map((highlight) => (
+                  <li className="flex gap-2" key={highlight}>
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             <div className="mt-6 flex flex-wrap gap-2">
               {visibleTags.map((tag) => (
                 <span

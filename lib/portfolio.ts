@@ -1,5 +1,6 @@
 export const profile = {
   name: "Trần Hiến Chương",
+  displayName: "TRẦN HIẾN CHƯƠNG",
   role: "Independent Builder",
   location: "Vietnam",
   summary:
@@ -20,6 +21,15 @@ export const stats = [
   { label: "Builder mode", value: "Tools + Stories" },
   { label: "Materials", value: "Code / Design / AI" },
   { label: "Current experiments", value: "LegalTech + Mobile" },
+];
+
+export const heroIdentityPhrases = [
+  "INDEPENDENT BUILDER",
+  "CREATIVE BUILDER",
+  "DIGITAL BUILDER",
+  "PRODUCT-MINDED BUILDER",
+  "AI TOOL EXPLORER",
+  "DIGITAL EXPERIMENTER",
 ];
 
 export type Project = {
@@ -49,7 +59,7 @@ export const projects: Project[] = [
     category: "AI / LegalTech / Thesis Project",
     status: "Research Project",
     description:
-      "A Vietnamese labor-law research assistant that combines retrieval, legal graph context, grounded answer generation, and citation checks.",
+      "The main build: a Vietnamese labor-law assistant using retrieval, graph context, grounded generation, and citation checks.",
     longDescription:
       "This project explores how AI can help users search and understand Vietnamese labor-law documents in a controlled, citation-aware way. The assistant retrieves legal context, expands it through a legal knowledge graph, and validates citations before producing a grounded answer.",
     tags: [
@@ -86,10 +96,10 @@ export const projects: Project[] = [
     slug: "gia-pha-viet",
     title: "Gia Phả Việt",
     type: "Mobile Prototype",
-    category: "Android / AI Studio / Personal Project",
+    category: "Android / AI Studio / Product Experiment",
     status: "In Progress",
     description:
-      "An Android/Kotlin prototype exploring a Vietnamese family-tree product idea, prepared around an AI Studio workflow and Gemini API setup.",
+      "The second track: an Android/Kotlin product experiment for a Vietnamese family-tree idea, prepared around AI Studio and Gemini.",
     longDescription:
       "Gia Phả Việt is an early-stage mobile product experiment. It is presented as a prototype and learning project, not as a finished production app.",
     tags: ["Kotlin", "Android Studio", "Gemini API", "AI Studio", "Mobile App"],
@@ -117,7 +127,7 @@ export const projects: Project[] = [
     category: "Frontend / Motion Design",
     status: "In Progress",
     description:
-      "This portfolio project: a dark neon Next.js interface focused on reusable sections, responsive layout, motion, and honest project presentation.",
+      "A dark neon Next.js portfolio system for testing reusable sections, responsive layout, motion, and project storytelling.",
     longDescription:
       "A visual-first portfolio system built to explore color, motion, glassmorphism, responsive layout, and interactive UI while keeping content editable and components reusable.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
@@ -131,7 +141,7 @@ export const projects: Project[] = [
     featured: false,
     visualType: "portfolio",
     problem:
-      "A beginner portfolio can feel empty if it only lists projects without strong visual identity or interaction polish.",
+      "A personal builder portfolio can feel flat if it only lists links without a clear identity, hierarchy, or interaction polish.",
     solution:
       "This portfolio uses dark neon visuals, glassmorphism, Motion, responsive layout, and reusable components to turn the portfolio itself into a polished project.",
     outcome:
@@ -145,7 +155,7 @@ export const projects: Project[] = [
     category: "Dashboard / Interface Design",
     status: "Concept",
     description:
-      "A dashboard UI concept for practicing card hierarchy, dark interface composition, responsive grids, and readable data blocks.",
+      "A compact dashboard UI study for practicing card hierarchy, dark composition, responsive grids, and readable data blocks.",
     longDescription:
       "A glowing dashboard concept focused on responsive cards, animated numbers, glass panels, and dark interface polish for a structured, scannable interface study.",
     tags: ["Next.js", "Tailwind CSS", "Motion"],
@@ -177,10 +187,10 @@ export function getProjectSlugs() {
 }
 
 export const featuredCaseStudy = {
-  eyebrow: "Featured Case Study",
+  eyebrow: "Main Build Deep Dive",
   title: "Citation-aware AI for Vietnamese labor-law research.",
   description:
-    "A closer look at the real research build behind the portfolio: retrieval, legal-document structure, graph context, and citation validation.",
+    "The strongest project in this portfolio: a research build focused on retrieval, legal-document structure, graph context, and citation validation.",
   problem: {
     title: "The problem",
     text: "Vietnamese labor-law information is spread across official documents and related legal structures. A natural-language answer needs to stay tied to retrieved legal context instead of unsupported model output.",
