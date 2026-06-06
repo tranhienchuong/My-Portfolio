@@ -24,7 +24,7 @@ export function SiteHeader() {
         </Link>
         <nav
           aria-label="Main navigation"
-          className="flex max-w-full items-center gap-4 overflow-x-auto text-nowrap pb-1 md:gap-7 md:overflow-visible md:pb-0"
+          className="flex min-w-0 basis-full flex-wrap items-center gap-x-3 gap-y-1 pb-1 md:basis-auto md:gap-x-7 md:pb-0"
         >
           {navItems.map((item) => (
             <Link

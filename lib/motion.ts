@@ -10,11 +10,10 @@ export const fadeUp: Variants = {
 };
 
 export const heroReveal: Variants = {
-  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
   },
 };

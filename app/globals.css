@@ -71,12 +71,6 @@ a {
   outline-offset: 3px;
 }
 
-.cyber-particle {
-  animation-name: cyber-particle-drift;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
 .cyber-flicker {
   position: relative;
   display: inline-block;
@@ -288,26 +282,6 @@ section[id] {
   }
 }
 
-@keyframes cyber-particle-drift {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 28px, 0);
-  }
-
-  16% {
-    opacity: 0.42;
-  }
-
-  72% {
-    opacity: 0.22;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(var(--particle-x), -52px, 0);
-  }
-}
-
 @keyframes cyber-label-glitch {
   0%,
   91%,
@@ -377,7 +351,6 @@ section[id] {
     transition-duration: 0.01ms !important;
   }
 
-  .cyber-particle,
   .cyber-flicker::after {
     animation: none !important;
   }

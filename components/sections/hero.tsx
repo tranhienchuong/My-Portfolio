@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import profileImage from "@/image/profile.png";
 import { FlickerText } from "@/components/effects/FlickerText";
 import { Container } from "@/components/ui/container";
@@ -11,6 +11,7 @@ import { GlowButton } from "@/components/ui/glow-button";
 import { GradientText } from "@/components/ui/gradient-text";
 import { heroReveal, heroStagger } from "@/lib/motion";
 import { heroIdentityPhrases, profile, stats } from "@/lib/portfolio";
+import { useHydratedReducedMotion } from "@/lib/use-hydrated-reduced-motion";
 
 const HERO_IDENTITY_INTERVAL_MS = 2600;
 
@@ -58,7 +59,7 @@ function RotatingIdentity({ reduceMotion }: { reduceMotion: boolean }) {
 }
 
 export function Hero() {
-  const reduceMotion = Boolean(useReducedMotion());
+  const reduceMotion = useHydratedReducedMotion();
   const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
     profile.email,
   )}&su=${encodeURIComponent("Portfolio collaboration")}`;
@@ -67,6 +68,7 @@ export function Hero() {
     <section className="py-16 sm:py-24 lg:py-28">
       <Container className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <motion.div
+          className="min-w-0"
           initial={reduceMotion ? false : "hidden"}
           variants={heroStagger}
           animate="visible"
@@ -78,14 +80,14 @@ export function Hero() {
             <FlickerText>{profile.role}</FlickerText>
           </motion.p>
           <motion.h1
-            className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.94] text-foreground sm:text-7xl lg:text-8xl"
+            className="mt-5 max-w-full text-5xl font-semibold leading-[0.94] text-foreground sm:max-w-4xl sm:text-7xl lg:text-8xl"
             variants={heroReveal}
           >
             <GradientText className="hero-gradient-name">{profile.displayName}</GradientText>
           </motion.h1>
           <motion.div
             aria-label={`Personal lab identity: ${heroIdentityPhrases.join(", ")}`}
-            className="mt-6 max-w-2xl rounded-lg border border-neon-cyan/20 bg-white/[0.045] p-3 shadow-[0_0_28px_hsl(var(--neon-cyan)/0.08),inset_0_1px_0_hsl(var(--foreground)/0.08)] backdrop-blur-sm sm:p-4"
+            className="mt-6 w-full max-w-full rounded-lg border border-neon-cyan/20 bg-white/[0.045] p-3 shadow-[0_0_28px_hsl(var(--neon-cyan)/0.08),inset_0_1px_0_hsl(var(--foreground)/0.08)] backdrop-blur-sm sm:max-w-2xl sm:p-4"
             variants={heroReveal}
           >
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
@@ -94,7 +96,7 @@ export function Hero() {
               </span>
               <span
                 aria-live="off"
-                className="relative block min-h-7 overflow-hidden text-base font-black uppercase tracking-[0.16em] text-foreground sm:text-lg"
+                className="relative block min-h-7 overflow-hidden break-words text-base font-black uppercase tracking-[0.16em] text-foreground sm:text-lg"
               >
                 <RotatingIdentity reduceMotion={reduceMotion} />
               </span>
@@ -111,7 +113,7 @@ export function Hero() {
             </div>
           </motion.div>
           <motion.p
-            className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg"
+            className="mt-6 w-full max-w-full text-base leading-8 text-muted-foreground sm:max-w-2xl sm:text-lg"
             variants={heroReveal}
           >
             {profile.summary}

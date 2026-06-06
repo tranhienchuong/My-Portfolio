@@ -1,6 +1,6 @@
 # Trần Hiến Chương — Creative Frontend Portfolio
 
-A colorful, visual-first portfolio built with Next.js, TypeScript, Tailwind CSS, Motion, GSAP, and Lenis. It showcases real projects, legal-tech research, mobile prototypes, UI experiments, and interactive frontend presentation.
+A colorful, visual-first portfolio built with Next.js, TypeScript, Tailwind CSS, Motion, and Lenis. It showcases real projects, legal-tech research, mobile prototypes, UI experiments, and interactive frontend presentation.
 
 ## Features
 
@@ -37,7 +37,6 @@ A colorful, visual-first portfolio built with Next.js, TypeScript, Tailwind CSS,
 - TypeScript
 - Tailwind CSS
 - Motion
-- GSAP
 - Lenis
 
 ## Project Structure
@@ -47,10 +46,10 @@ app/                  App Router pages, layout, and project detail routes
 components/           Shared React components
 components/sections/  Homepage and content sections
 components/ui/        Reusable UI primitives
-components/effects/   Visual background/effect components
+components/effects/   Static background and optional cursor effects
 components/providers/ App-level providers
 lib/                  Portfolio data, helpers, and shared utilities
-public/               Static assets can be added here later
+public/               Static icons, manifest, and public assets
 ```
 
 ## Getting Started
@@ -91,10 +90,6 @@ Run lint checks:
 npm run lint
 ```
 
-## Screenshots
-
-Screenshots can be added later when final preview images are available.
-
 ## Content Honesty
 
 - Project descriptions avoid fake clients, users, revenue, awards, and production metrics.
@@ -103,17 +98,17 @@ Screenshots can be added later when final preview images are available.
 
 ## Performance Note
 
-The portfolio uses visual effects and glassmorphism. If performance issues appear, the first area to optimize is large project-card hover effects and heavy blur/shadow layers.
+The portfolio keeps the dark neon identity with a static CSS background, Motion-based reveal animations, and guarded desktop-only enhancements. The background does not use a canvas or a continuous animation loop.
 
 ## Deployment
 
 This project can be deployed on Vercel or any Next.js-compatible hosting provider.
 
-No production deployment URL has been added yet.
+Set `GROQ_API_KEY` in the deployment environment to enable the AI assistant. Without it, the portfolio still works and the assistant returns a clear configuration message.
 
 ## License
 
-No license has been selected yet.
+No license is specified.
 
 ## Author
 

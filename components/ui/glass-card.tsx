@@ -1,7 +1,8 @@
 "use client";
 
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { motion, type HTMLMotionProps, useReducedMotion } from "motion/react";
+import { motion, type HTMLMotionProps } from "motion/react";
+import { useHydratedReducedMotion } from "@/lib/use-hydrated-reduced-motion";
 import { cn } from "@/lib/utils";
 
 type GlassCardProps = Omit<
@@ -21,7 +22,7 @@ export function GlassCard({
   performance = false,
   ...props
 }: GlassCardProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydratedReducedMotion();
   const hoverProps =
     interactive && !performance && !reduceMotion
       ? {

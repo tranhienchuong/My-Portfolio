@@ -1,8 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { fadeUp } from "@/lib/motion";
+import { useHydratedReducedMotion } from "@/lib/use-hydrated-reduced-motion";
 
 type FadeUpProps = {
   children: ReactNode;
@@ -15,19 +16,15 @@ export function FadeUp({
   className,
   once = true,
 }: FadeUpProps) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  const reduceMotion = useHydratedReducedMotion();
 
   return (
     <motion.div
       className={className}
-      initial="hidden"
-      variants={fadeUp}
-      viewport={{ once, amount: 0.2 }}
-      whileInView="visible"
+      initial={reduceMotion ? false : "hidden"}
+      variants={reduceMotion ? undefined : fadeUp}
+      viewport={reduceMotion ? undefined : { once, amount: 0.2 }}
+      whileInView={reduceMotion ? undefined : "visible"}
     >
       {children}
     </motion.div>
