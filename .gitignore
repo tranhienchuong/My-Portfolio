@@ -9,6 +9,7 @@
 # production
 /build
 /dist
+/.vercel
 
 # local env files
 .env*.local

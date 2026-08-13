@@ -18,6 +18,18 @@ There is no adapter layer because the current content source is static and in-pr
 - `components/ui/*` owns accessible visual primitives.
 - `tokens/*` owns design decisions shared across every layer.
 
+## AI assistant seam
+
+The assistant is exposed to the React tree through one interface:
+`<AiAssistantWidget />`. Its open/closed state, conversation history, commands,
+typing feedback, focus handling, and error recovery remain inside the module.
+
+`server/ai-assistant.ts` is a second deep module at the server seam. Its single
+handler interface hides request validation, prompt-injection defenses, DeepSeek
+V4 Flash configuration, timeouts, upstream normalization, and safe client errors.
+The Vite development middleware and production function are adapters using that
+same handler, so the system prompt and API key never enter the browser bundle.
+
 The content object is the primary test surface for project data. UI components should not fetch repositories or infer claims at render time.
 
 ## Adding a project

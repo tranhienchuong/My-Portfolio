@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 
+import { AiAssistantWidget } from "@/components/ai-assistant/ai-assistant-widget"
 import { ScrollManager } from "@/components/site/scroll-manager"
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
@@ -46,6 +47,7 @@ function SiteFrame() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+      {!isResume ? <AiAssistantWidget /> : null}
       {!isResume ? <SiteFooter /> : null}
     </div>
   )

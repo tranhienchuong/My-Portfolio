@@ -69,6 +69,37 @@
   }
 }
 
+@keyframes assistant-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0.45rem color-mix(in srgb, var(--semantic-color-primary) 38%, transparent));
+  }
+  50% {
+    filter: drop-shadow(0 0 0.875rem color-mix(in srgb, var(--semantic-color-primary) 70%, transparent));
+  }
+}
+
+@keyframes assistant-ping {
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes assistant-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(calc(var(--primitive-spacing-1) * -1));
+  }
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -178,6 +209,57 @@
   .neo-press:active:not(:disabled) {
     transform: translate(var(--primitive-spacing-1), var(--primitive-spacing-1));
     box-shadow: var(--primitive-shadow-none);
+  }
+
+  .ai-assistant-root {
+    position: fixed;
+    right: max(var(--primitive-spacing-4), env(safe-area-inset-right));
+    bottom: max(var(--primitive-spacing-4), env(safe-area-inset-bottom));
+    z-index: 50;
+  }
+
+  .ai-assistant-panel {
+    width: min(24rem, calc(100vw - (var(--primitive-spacing-4) * 2)));
+    height: min(38rem, calc(100dvh - (var(--primitive-spacing-4) * 2)));
+    border-radius: calc(var(--primitive-radius-xl) + var(--primitive-spacing-1));
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--semantic-color-surface) 86%, transparent),
+        color-mix(in srgb, var(--semantic-color-background) 76%, transparent)
+      );
+    -webkit-backdrop-filter: blur(1rem) saturate(1.15);
+    backdrop-filter: blur(1rem) saturate(1.15);
+  }
+
+  .ai-assistant-trigger {
+    position: relative;
+    animation: assistant-glow 2.6s ease-in-out 3;
+  }
+
+  .ai-assistant-teaser {
+    position: relative;
+  }
+
+  .ai-assistant-teaser::after {
+    position: absolute;
+    right: calc(var(--primitive-spacing-2) * -1);
+    bottom: var(--primitive-spacing-4);
+    width: var(--primitive-spacing-4);
+    height: var(--primitive-spacing-4);
+    border-top: var(--primitive-border-width-strong) solid var(--semantic-color-border);
+    border-right: var(--primitive-border-width-strong) solid var(--semantic-color-border);
+    background: var(--semantic-color-surface);
+    content: "";
+    transform: rotate(45deg);
+  }
+
+  .ai-notification-ping {
+    animation: assistant-ping 1.7s cubic-bezier(0, 0, 0.2, 1) 4;
+  }
+
+  .ai-typing-dot {
+    animation: assistant-typing 1.1s ease-in-out infinite;
   }
 }
 
