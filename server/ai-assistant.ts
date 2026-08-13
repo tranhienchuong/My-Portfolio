@@ -51,6 +51,21 @@ function sendJson(
   response.end(JSON.stringify(payload))
 }
 
+function createJsonResponse(status: number, payload: Record<string, unknown>) {
+  return Response.json(payload, {
+    status,
+    headers: { "Cache-Control": "no-store" },
+  })
+}
+
+function parseJsonText(rawBody: string) {
+  try {
+    return JSON.parse(rawBody) as unknown
+  } catch {
+    throw new RequestError("The request body must be valid JSON.", 400, "invalid_json")
+  }
+}
+
 async function readJsonBody(request: IncomingMessage) {
   const chunks: Buffer[] = []
   let totalBytes = 0
@@ -70,11 +85,22 @@ async function readJsonBody(request: IncomingMessage) {
     chunks.push(buffer)
   }
 
-  try {
-    return JSON.parse(Buffer.concat(chunks).toString("utf8")) as unknown
-  } catch {
-    throw new RequestError("The request body must be valid JSON.", 400, "invalid_json")
+  return parseJsonText(Buffer.concat(chunks).toString("utf8"))
+}
+
+async function readWebJsonBody(request: Request) {
+  const rawBody = await request.text()
+  const bodyBytes = new TextEncoder().encode(rawBody).byteLength
+
+  if (bodyBytes > MAX_BODY_BYTES) {
+    throw new RequestError(
+      "That message is too large. Please ask a shorter question.",
+      413,
+      "request_too_large",
+    )
   }
+
+  return parseJsonText(rawBody)
 }
 
 function parseMessages(body: unknown): ConversationMessage[] {
@@ -223,6 +249,42 @@ export function createAiAssistantHttpHandler(config: AiAssistantConfig) {
       }
 
       sendJson(response, 500, {
+        code: "assistant_error",
+        message: "Ask My AI hit an unexpected error. Please try again.",
+      })
+    }
+  }
+}
+
+/**
+ * Web-standard adapter used by Vercel's current Node runtime contract. Keeping
+ * this separate from the local Node adapter prevents platform request details
+ * from leaking into validation, prompting, and DeepSeek integration.
+ */
+export function createAiAssistantWebHandler(config: AiAssistantConfig) {
+  return async (request: Request) => {
+    if (request.method !== "POST") {
+      return createJsonResponse(405, {
+        code: "method_not_allowed",
+        message: "Use POST to talk with Ask My AI.",
+      })
+    }
+
+    try {
+      const body = await readWebJsonBody(request)
+      const messages = parseMessages(body)
+      const result = await askDeepSeek(messages, config)
+
+      return createJsonResponse(200, {
+        message: result.answer,
+        model: result.model,
+      })
+    } catch (error) {
+      if (error instanceof RequestError) {
+        return createJsonResponse(error.status, { code: error.code, message: error.message })
+      }
+
+      return createJsonResponse(500, {
         code: "assistant_error",
         message: "Ask My AI hit an unexpected error. Please try again.",
       })
