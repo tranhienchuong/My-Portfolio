@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react"
 import { Bot, Send, Sparkles, X } from "lucide-react"
 
+import { parseInlineMessage } from "@/components/ai-assistant/inline-message"
 import { readAssistantMessage } from "@/components/ai-assistant/assistant-response"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -49,48 +50,26 @@ function TypingIndicator() {
 }
 
 function InlineMessageContent({ text }: { text: string }) {
-  const parts = text.split(
-    /(\*\*[^*]+\*\*|\[[^\]]+\]\((?:(?:https?):\/\/|mailto:|tel:)[^)]+\)|(?:(?:https?):\/\/|mailto:|tel:)[^\s]+)/g,
-  )
-
-  return parts.map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>
+  return parseInlineMessage(text).map((segment, index) => {
+    if (segment.kind === "strong") {
+      return <strong key={`${segment.text}-${index}`}>{segment.text}</strong>
     }
 
-    const markdownLink = part.match(
-      /^\[([^\]]+)\]\(((?:(?:https?):\/\/|mailto:|tel:)[^)]+)\)$/,
-    )
-    if (markdownLink) {
-      return (
-        <a
-          className="font-semibold underline decoration-2 underline-offset-2"
-          href={markdownLink[2]}
-          key={`${part}-${index}`}
-          rel={markdownLink[2].startsWith("http") ? "noreferrer" : undefined}
-          target={markdownLink[2].startsWith("http") ? "_blank" : undefined}
-        >
-          {markdownLink[1]}
-        </a>
-      )
-    }
-
-    if (/^(?:https?:\/\/|mailto:|tel:)/.test(part)) {
-      const href = part
+    if (segment.kind === "link") {
       return (
         <a
           className="break-all font-semibold underline decoration-2 underline-offset-2"
-          href={href}
-          key={`${part}-${index}`}
-          rel={href.startsWith("http") ? "noreferrer" : undefined}
-          target={href.startsWith("http") ? "_blank" : undefined}
+          href={segment.href}
+          key={`${segment.href}-${index}`}
+          rel={segment.href.startsWith("http") ? "noreferrer" : undefined}
+          target={segment.href.startsWith("http") ? "_blank" : undefined}
         >
-          {part.replace(/^mailto:/, "")}
+          {segment.text}
         </a>
       )
     }
 
-    return part.replaceAll("**", "")
+    return segment.text
   })
 }
 
