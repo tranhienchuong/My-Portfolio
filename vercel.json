@@ -3,6 +3,11 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/ai-assistant.ts": {
+      "includeFiles": "{server/**,src/portfolio/content.ts}"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
