@@ -22,12 +22,17 @@ type DeepSeekResponse = {
 }
 
 class RequestError extends Error {
+  readonly status: number
+  readonly code: string
+
   constructor(
     message: string,
-    readonly status: number,
-    readonly code: string,
+    status: number,
+    code: string,
   ) {
     super(message)
+    this.status = status
+    this.code = code
   }
 }
 

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react"
 import { Bot, Send, Sparkles, X } from "lucide-react"
 
+import { readAssistantMessage } from "@/components/ai-assistant/assistant-response"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -9,10 +10,6 @@ type Message = {
   role: "user" | "assistant"
   content: string
   kind?: "message" | "error"
-}
-
-type AssistantResponse = {
-  message?: string
 }
 
 const QUICK_COMMANDS = ["/projects", "/skills", "/contacts"] as const
@@ -243,14 +240,10 @@ export function AiAssistantWidget() {
             .map(({ role, content }) => ({ role, content })),
         }),
       })
-      const payload = (await response.json()) as AssistantResponse
-
-      if (!response.ok || !payload.message) {
-        throw new Error(payload.message ?? "Ask My AI could not answer that question.")
-      }
+      const answer = await readAssistantMessage(response)
 
       setIsTyping(false)
-      await revealAnswer(payload.message)
+      await revealAnswer(answer)
     } catch (error) {
       const message =
         error instanceof Error

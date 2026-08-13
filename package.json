@@ -8,6 +8,7 @@
     "build:tokens": "node scripts/build-tokens.mjs",
     "build": "npm run build:tokens && tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --no-warnings --experimental-strip-types --test tests/*.test.mjs",
     "validate:tokens": "node .agents/skills/design-system/scripts/validate-tokens.cjs --dir src",
     "preview": "vite preview"
   },
