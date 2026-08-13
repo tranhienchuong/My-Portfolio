@@ -1,0 +1,318 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap");
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+@theme inline {
+  --color-background: var(--semantic-color-background);
+  --color-surface: var(--semantic-color-surface);
+  --color-foreground: var(--semantic-color-foreground);
+  --color-heading: var(--semantic-color-heading);
+  --color-muted: var(--semantic-color-muted);
+  --color-muted-foreground: var(--semantic-color-muted-foreground);
+  --color-primary: var(--semantic-color-primary);
+  --color-primary-hover: var(--semantic-color-primary-hover);
+  --color-primary-active: var(--semantic-color-primary-active);
+  --color-primary-foreground: var(--semantic-color-on-primary);
+  --color-primary-strong: var(--semantic-color-primary-strong);
+  --color-primary-strong-foreground: var(--semantic-color-on-primary-strong);
+  --color-secondary: var(--semantic-color-secondary);
+  --color-secondary-foreground: var(--semantic-color-on-secondary);
+  --color-accent: var(--semantic-color-accent);
+  --color-accent-foreground: var(--semantic-color-on-accent);
+  --color-note: var(--semantic-color-note);
+  --color-note-foreground: var(--semantic-color-on-note);
+  --color-success: var(--semantic-color-success);
+  --color-success-foreground: var(--semantic-color-on-success);
+  --color-warning: var(--semantic-color-warning);
+  --color-warning-foreground: var(--semantic-color-on-warning);
+  --color-destructive: var(--semantic-color-destructive);
+  --color-destructive-foreground: var(--semantic-color-on-destructive);
+  --color-border: var(--semantic-color-border);
+  --color-border-subtle: var(--semantic-color-border-subtle);
+  --color-ring: var(--semantic-color-ring);
+
+  --font-display: var(--semantic-font-family-display);
+  --font-body: var(--semantic-font-family-body);
+  --font-mono: var(--semantic-font-family-mono);
+
+  --radius-control: var(--semantic-radius-control);
+  --radius-surface: var(--semantic-radius-surface);
+  --radius-pill: var(--semantic-radius-pill);
+
+  --shadow-neo-sm: var(--primitive-shadow-neo-sm);
+  --shadow-neo: var(--primitive-shadow-neo-md);
+  --shadow-neo-lg: var(--primitive-shadow-neo-lg);
+
+  --animate-dialog-in: dialog-in var(--semantic-motion-normal) var(--semantic-motion-enter);
+  --animate-dialog-out: dialog-out var(--semantic-motion-fast) var(--semantic-motion-exit);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--primitive-spacing-2)) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dialog-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(var(--primitive-spacing-2)) scale(0.98);
+  }
+}
+
+@keyframes assistant-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0.45rem color-mix(in srgb, var(--semantic-color-primary) 38%, transparent));
+  }
+  50% {
+    filter: drop-shadow(0 0 0.875rem color-mix(in srgb, var(--semantic-color-primary) 70%, transparent));
+  }
+}
+
+@keyframes assistant-ping {
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes assistant-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(calc(var(--primitive-spacing-1) * -1));
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--semantic-color-background);
+    color: var(--semantic-color-foreground);
+    font-family: var(--semantic-font-family-body);
+    font-size: var(--primitive-font-size-base);
+    line-height: var(--primitive-line-height-normal);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--semantic-color-primary);
+    color: var(--semantic-color-on-primary);
+  }
+
+  :focus-visible {
+    outline: var(--primitive-border-width-strong) solid var(--semantic-color-ring);
+    outline-offset: var(--primitive-spacing-1);
+  }
+}
+
+@layer utilities {
+  .content-shell {
+    width: min(100% - calc(var(--primitive-spacing-6) * 2), var(--primitive-size-content-max));
+    margin-inline: auto;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .neo-press {
+    transition:
+      transform var(--semantic-motion-fast) var(--semantic-motion-enter),
+      box-shadow var(--semantic-motion-fast) var(--semantic-motion-enter),
+      background-color var(--semantic-motion-fast) var(--semantic-motion-enter);
+  }
+
+  .clay-button {
+    transition:
+      transform var(--semantic-motion-fast) var(--semantic-motion-enter),
+      box-shadow var(--semantic-motion-fast) var(--semantic-motion-enter);
+  }
+
+  .clay-hover {
+    transition:
+      transform var(--semantic-motion-normal) var(--semantic-motion-enter),
+      box-shadow var(--semantic-motion-normal) var(--semantic-motion-enter);
+  }
+
+  .soft-clay-hover {
+    transition: transform var(--semantic-motion-fast) var(--semantic-motion-enter);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .clay-button:hover:not(:disabled) {
+      transform: translate(
+        calc(var(--primitive-spacing-1) / 2),
+        calc(var(--primitive-spacing-1) / 2)
+      );
+      box-shadow: var(--primitive-shadow-neo-sm);
+    }
+
+    .clay-hover:hover {
+      transform: translate(
+        calc(var(--primitive-spacing-1) / 2),
+        calc(var(--primitive-spacing-1) / 2)
+      );
+      box-shadow: var(--primitive-shadow-neo-md);
+    }
+
+    .soft-clay-hover:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .neo-press:active:not(:disabled) {
+    transform: translate(var(--primitive-spacing-1), var(--primitive-spacing-1));
+    box-shadow: var(--primitive-shadow-none);
+  }
+
+  .ai-assistant-root {
+    position: fixed;
+    right: max(var(--primitive-spacing-4), env(safe-area-inset-right));
+    bottom: max(var(--primitive-spacing-4), env(safe-area-inset-bottom));
+    z-index: 50;
+  }
+
+  .ai-assistant-panel {
+    width: min(24rem, calc(100vw - (var(--primitive-spacing-4) * 2)));
+    height: min(38rem, calc(100dvh - (var(--primitive-spacing-4) * 2)));
+    border-radius: calc(var(--primitive-radius-xl) + var(--primitive-spacing-1));
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--semantic-color-surface) 86%, transparent),
+        color-mix(in srgb, var(--semantic-color-background) 76%, transparent)
+      );
+    -webkit-backdrop-filter: blur(1rem) saturate(1.15);
+    backdrop-filter: blur(1rem) saturate(1.15);
+  }
+
+  .ai-assistant-trigger {
+    position: relative;
+    animation: assistant-glow 2.6s ease-in-out 3;
+  }
+
+  .ai-assistant-teaser {
+    position: relative;
+  }
+
+  .ai-assistant-teaser::after {
+    position: absolute;
+    right: calc(var(--primitive-spacing-2) * -1);
+    bottom: var(--primitive-spacing-4);
+    width: var(--primitive-spacing-4);
+    height: var(--primitive-spacing-4);
+    border-top: var(--primitive-border-width-strong) solid var(--semantic-color-border);
+    border-right: var(--primitive-border-width-strong) solid var(--semantic-color-border);
+    background: var(--semantic-color-surface);
+    content: "";
+    transform: rotate(45deg);
+  }
+
+  .ai-notification-ping {
+    animation: assistant-ping 1.7s cubic-bezier(0, 0, 0.2, 1) 4;
+  }
+
+  .ai-typing-dot {
+    animation: assistant-typing 1.1s ease-in-out infinite;
+  }
+}
+
+@media (width < 48rem) {
+  .content-shell {
+    width: min(100% - calc(var(--primitive-spacing-4) * 2), var(--primitive-size-content-max));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+    size: A4;
+  }
+
+  body {
+    background: white;
+    color: var(--semantic-color-foreground);
+    font-size: 10pt;
+  }
+
+  .resume-actions {
+    display: none !important;
+  }
+
+  article {
+    break-inside: avoid;
+  }
+
+  #main-content > main {
+    width: 100%;
+    padding: 0;
+  }
+
+  #main-content > main > article {
+    max-width: none;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}

@@ -1,9 +1,26 @@
-.next/
-node_modules/
-out/
-dist/
-build/
+# dependencies
+/node_modules
+/.pnpm-store
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+/dist
+/.vercel
+
+# local env files
+.env*.local
+.env
+
+# misc
+.DS_Store
+*.pem
 *.log
-.env*
-!.env.example
-!.env.local.example
+__pycache__/
+*.pyc
+
+# typescript
+*.tsbuildinfo
